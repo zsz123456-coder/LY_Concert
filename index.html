@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>纯妹妹 · 单依纯深圳演唱会 | 永恒回响 · 十首典藏</title>
+    <meta name="description" content="单依纯「纯妹妹」深圳演唱会纪念页 | 2026.03.29 深圳湾体育中心 | 永恒珍藏的纯色记忆">
+    <meta name="keywords" content="单依纯,纯妹妹,深圳演唱会,单依纯演唱会,纯妹妹深圳">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0f;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary: #ff4d6d;
+            --primary-light: #ff6b85;
+            --primary-dark: #e63946;
+            --secondary: #ffb347;
+            --gold: #ffd966;
+            --purple-glow: #c77dff;
+            --glass-bg: rgba(20, 20, 40, 0.6);
+            --glass-border: rgba(255, 77, 109, 0.25);
+            --shadow-glow: 0 0 20px rgba(255, 77, 109, 0.3);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                        rgba(255, 77, 109, 0.08) 0%, 
+                        rgba(10, 10, 20, 0) 60%);
+            pointer-events: none;
+            z-index: 1;
+            transition: background 0.05s ease;
+        }
+
+        /* ========== 全屏封面样式 ========== */
+        .fullscreen-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0a1a 0%, #03030a 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0s linear 1.2s;
+            opacity: 1;
+            visibility: visible;
+            backdrop-filter: blur(20px);
+        }
+        .fullscreen-cover.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .cover-content {
+            text-align: center;
+            animation: coverGlow 2s ease-in-out infinite;
+        }
+        @keyframes coverGlow {
+            0%, 100% { text-shadow: 0 0 20px #ff4d6d, 0 0 40px #ffb347; }
+            50% { text-shadow: 0 0 40px #ff4d6d, 0 0 80px #ffb347; }
+        }
+        .cover-title {
+            font-size: clamp(3rem, 12vw, 7rem);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff4d6d, #ffb347, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+        }
+        .cover-sub {
+            font-size: 1.2rem;
+            color: #ffb347;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+        }
+        .cover-btn {
+            background: linear-gradient(135deg, #ff4d6d, #ff9f4a);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(255,77,109,0.6);
+            transition: 0.3s;
+            animation: btnPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,77,109,0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255,77,109,0.9); }
+        }
+        .cover-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(255,77,109,1);
+        }
+        .cover-hint {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #888;
+            animation: fadeInOut 1.5s ease-in-out infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* 主内容初始隐藏 */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        /* 创意动画元素 - 流星主体 */
+        .shooting-star {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 35% 35%, #fff5b0, #ffcc44, #ffaa33);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 15px #ffaa44) drop-shadow(0 0 30px #ff8844);
+            z-index: 2000;
+            pointer-events: none;
+        }
+        /* 拖尾粒子 */
+        .star-tail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ffdd88, #ffaa44);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1999;
+            animation: tailFade 0.6s ease-out forwards;
+        }
+        @keyframes tailFade {
+            0% { opacity: 0.9; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.2); }
+        }
+        /* 星星炸裂碎片 */
+        .star-shard {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #ffdd88, #ffaa44);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 4px #ffaa66);
+            pointer-events: none;
+            z-index: 2001;
+            animation: shardFly 0.8s ease-out forwards;
+        }
+        @keyframes shardFly {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--dx, 100px), var(--dy, -80px)) scale(0.2) rotate(360deg); opacity: 0; }
+        }
+        /* 冲击波 */
+        .shockwave {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,200,80,0.9), rgba(255,100,50,0.5), transparent);
+            transform: translate(-50%, -50%);
+            animation: shockExpand 0.7s ease-out forwards;
+            z-index: 1999;
+            pointer-events: none;
+        }
+        @keyframes shockExpand {
+            0% { width: 0; height: 0; opacity: 0.8; }
+            100% { width: 400px; height: 400px; opacity: 0; }
+        }
+
+        /* 魔法丝线 */
+        .magic-line {
+            position: fixed;
+            height: 4px;
+            background: linear-gradient(90deg, #ffb347, #ff4d6d, #ffb347, #ff4d6d);
+            background-size: 200% 100%;
+            animation: lineGlow 0.4s linear infinite, lineGrow 0.5s ease-out forwards;
+            filter: blur(1px);
+            z-index: 1998;
+            pointer-events: none;
+        }
+        @keyframes lineGlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+        @keyframes lineGrow {
+            0% { width: 0; opacity: 0; }
+            100% { width: 350px; opacity: 1; }
+        }
+
+        /* 模块拉出动画 */
+        .section-module {
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.5s ease;
+        }
+        .section-module.revealed {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* 音符飞入动画 */
+        .music-note {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 2000;
+            animation: noteFly 0.8s ease-out forwards;
+        }
+        @keyframes noteFly {
+            0% {
+                transform: translateX(-50px) translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(var(--fly-y, -100px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 光柱扫过效果 */
+        .light-beam {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,77,109,0.3), rgba(255,180,71,0.3), transparent);
+            pointer-events: none;
+            z-index: 2000;
+            animation: beamSweep 0.8s ease-out forwards;
+        }
+        @keyframes beamSweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* 原有样式保持不变 */
+        .floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: floatUp 15s linear infinite;
+            filter: drop-shadow(0 0 2px rgba(255,77,109,0.3));
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 12;
+        }
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        .navbar, .hero, section, footer, .music-player, .go-top, .record-player, .lightup-btn, .wish-counter {
+            position: relative;
+            z-index: 5;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,77,109,0.5);
+            cursor: default;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 2001;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a2a; }
+        ::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
+        .neon-text { text-shadow: 0 0 5px #ff4d6d, 0 0 10px #ff1e4d, 0 0 20px #b80c3a; }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 12, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 77, 109, 0.3);
+            z-index: 100;
+        }
+        .logo {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff4d6d, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #eee; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .nav-links a:hover { color: #ff4d6d; text-shadow: 0 0 5px #ff4d6d; }
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 1.2rem; }
+            .nav-links { gap: 1.2rem; }
+            .logo { font-size: 1.2rem; }
+            .nav-links a { font-size: 0.85rem; }
+        }
+
+        .record-player {
+            position: fixed;
+            top: 80px;
+            left: 1.2rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255,77,109,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+        }
+        @media (max-width: 768px) {
+            .record-player { width: 70px; height: 70px; top: 70px; left: 0.8rem; }
+        }
+
+        .lightup-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #ff4d6d, #ff9f4a);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255,77,109,0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 100;
+        }
+        .wish-counter {
+            position: fixed;
+            top: 5rem;
+            right: 1.2rem;
+            background: rgba(255,77,109,0.3);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,77,109,0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 100;
+            cursor: pointer;
+            color: #ffcc88;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: transparent;
+        }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 1rem; }
+        .btn-glow {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff4d6d, #ff9f4a);
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #0a0a0f;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
+        }
+        .countdown {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border-left: 3px solid #ff4d6d;
+        }
+        section { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem; }
+        .section-title span { background: linear-gradient(135deg, #ff4d6d, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .title-decoration { width: 80px; height: 3px; background: #ff4d6d; margin: 0.5rem auto 0; border-radius: 4px; }
+
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
+        .photo-card {
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(17, 17, 24, 0.8);
+            backdrop-filter: blur(4px);
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        .photo-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .photo-card:hover img { transform: scale(1.03); }
+        .photo-card .caption { padding: 0.8rem; text-align: center; background: rgba(0,0,0,0.6); }
+
+        .carousel-container { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; overflow: hidden; padding: 40px 0 60px; }
+        .carousel-track { display: flex; align-items: center; justify-content: center; gap: 1.5rem; transition: all 0.4s ease; }
+        .carousel-item { flex: 0 0 28%; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); opacity: 0.6; transform: scale(0.85); filter: blur(1px); cursor: pointer; border-radius: 28px; overflow: hidden; background: rgba(17, 17, 24, 0.9); backdrop-filter: blur(6px); border: 1px solid rgba(255,77,109,0.2); }
+        .carousel-item.active { opacity: 1; transform: scale(1); filter: blur(0); box-shadow: 0 20px 35px -8px rgba(255,77,109,0.6); border-color: #ff4d6d; }
+        .carousel-item img { width: 100%; height: 320px; object-fit: cover; display: block; }
+        .carousel-item .caption { padding: 1rem; text-align: center; background: rgba(0,0,0,0.7); font-weight: 500; }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 12px; margin-top: 30px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; }
+        .dot.active { background: #ff4d6d; width: 24px; border-radius: 10px; }
+
+        .song-gallery-container {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 20px 0 60px;
+        }
+        .song-gallery-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 2rem;
+        }
+        .song-photo-card {
+            flex: 0 0 calc(25% - 1.5rem);
+            min-width: 260px;
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(255,77,109,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .song-photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff4d6d;
+            box-shadow: 0 25px 40px rgba(255,77,109,0.4);
+        }
+        .song-photo-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .song-photo-card:hover .song-photo-img {
+            transform: scale(1.05);
+        }
+        .song-photo-info {
+            padding: 1rem;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        .song-photo-number {
+            font-size: 0.8rem;
+            color: #ff9f4a;
+            letter-spacing: 1px;
+        }
+        .song-photo-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0.3rem 0;
+            color: #fff;
+        }
+        .play-badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 1.4rem;
+            color: #ff4d6d;
+        }
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 20;
+            transition: 0.2s;
+        }
+        .gallery-nav-btn:hover { background: #ff4d6d; transform: translateY(-50%) scale(1.05); }
+        .gallery-prev { left: 0px; }
+        .gallery-next { right: 0px; }
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .gallery-dot.active {
+            background: #ff4d6d;
+            width: 24px;
+            border-radius: 10px;
+        }
+        @media (max-width: 1000px) {
+            .song-photo-card { flex: 0 0 calc(33.33% - 1.4rem); }
+        }
+        @media (max-width: 700px) {
+            .song-photo-card { flex: 0 0 calc(50% - 1rem); }
+            .gallery-prev { left: 5px; }
+            .gallery-next { right: 5px; }
+        }
+
+        .music-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(24px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .music-modal.active { visibility: visible; opacity: 1; }
+        .modal-content {
+            position: relative;
+            width: 94%;
+            max-width: 1300px;
+            height: 88vh;
+            background: rgba(10,10,20,0.7);
+            border-radius: 56px;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px rgba(255,77,109,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            filter: blur(14px) brightness(0.35);
+            z-index: 0;
+        }
+        .modal-inner {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(16px);
+            padding: 2rem;
+        }
+        .disc-cover {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background-size: cover;
+            box-shadow: 0 0 0 10px rgba(255,77,109,0.4);
+            animation: rotateDisc 20s linear infinite;
+            animation-play-state: paused;
+        }
+        .disc-cover.playing { animation-play-state: running; }
+        @keyframes rotateDisc {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .modal-song-name { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg,#fff,#ffb347); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 1rem 0 0.5rem; }
+        
+        .lyrics-container {
+            width: 80%;
+            max-height: 180px;
+            overflow-y: auto;
+            text-align: center;
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 28px;
+            font-size: 1rem;
+            scroll-behavior: smooth;
+        }
+        .lyrics-line {
+            padding: 6px 0;
+            opacity: 0.5;
+            transition: all 0.2s;
+            color: #ddd;
+        }
+        .lyrics-line.active {
+            opacity: 1;
+            color: #ffb347;
+            text-shadow: 0 0 5px #ff4d6d;
+            font-weight: bold;
+            transform: scale(1.02);
+        }
+        
+        .progress-bar { width: 70%; height: 5px; background: rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; margin: 0.5rem 0; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg,#ff4d6d,#ffb347); border-radius: 5px; }
+        .time-info { width: 70%; display: flex; justify-content: space-between; margin-top: 0.3rem; font-size: 0.85rem; }
+        .controls { display: flex; gap: 2rem; margin: 1rem 0; }
+        .ctrl-btn { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 1px solid #ff4d6d; }
+        .ctrl-btn:hover { background: #ff4d6d; transform: scale(1.05); }
+        .close-modal { position: absolute; top: 20px; right: 30px; font-size: 2rem; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
+        @media (max-width: 700px) {
+            .disc-cover { width: 180px; height: 180px; }
+            .modal-song-name { font-size: 1.5rem; }
+            .ctrl-btn { width: 48px; height: 48px; font-size: 1.3rem; }
+            .lyrics-container { width: 90%; font-size: 0.85rem; max-height: 150px; }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 1rem 0.5rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,77,109,0.5);
+            z-index: 101;
+        }
+        .play-btn { background: #ff4d6d; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .music-info { font-size: 0.85rem; color: #ffb347; }
+
+        .timeline { max-width: 900px; margin: 0 auto; }
+        .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .timeline-time { min-width: 100px; font-weight: 700; color: #ff4d6d; font-size: 1.2rem; }
+        .timeline-desc { background: rgba(20,20,35,0.7); backdrop-filter: blur(4px); padding: 1rem 1.5rem; border-radius: 20px; width: 100%; }
+
+        .messages-container { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
+        .message-card {
+            flex: 1 1 280px;
+            background: rgba(17, 17, 24, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,77,109,0.4);
+            position: relative;
+        }
+        .delete-msg {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 30px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            color: #ff8888;
+            cursor: pointer;
+        }
+        .message-form { max-width: 600px; margin: 2rem auto; background: rgba(10,10,20,0.7); backdrop-filter: blur(8px); padding: 1.5rem; border-radius: 28px; border: 1px solid rgba(255,77,109,0.4); }
+        .message-form input, .message-form textarea { width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,77,109,0.5); border-radius: 40px; padding: 0.8rem 1rem; margin-bottom: 1rem; color: white; font-family: inherit; outline: none; }
+        .message-form button { background: linear-gradient(90deg, #ff4d6d, #ff9f4a); border: none; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: bold; cursor: pointer; }
+
+        .share-buttons { text-align: center; margin: 2rem 0; }
+        .share-buttons a { display: inline-block; margin: 0 1rem; color: #fff; font-size: 1.8rem; transition: 0.2s; }
+        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,77,109,0.3); background: rgba(3,3,10,0.7); backdrop-filter: blur(8px); }
+        .go-top {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: #ff4d6d;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .go-top.visible { opacity: 1; }
+        .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.7s ease; }
+        .fade-up.revealed { opacity: 1; transform: translateY(0); }
+        .wish-star { margin-left: 0.8rem; cursor: pointer; color: #ffb347; transition: 0.2s; }
+        @media (max-width: 600px) {
+            .carousel-item { flex: 0 0 80%; }
+            .timeline-item { flex-direction: column; }
+            .music-player { bottom: 1rem; left: 1rem; }
+        }
+
+        /* 新增样式 */
+        .digital-ticket {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, rgba(20, 20, 45, 0.95), rgba(10, 10, 30, 0.95));
+            backdrop-filter: blur(16px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 77, 109, 0.4);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .digital-ticket:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.2);
+            border-color: #ff4d6d;
+        }
+        .ticket-header {
+            background: linear-gradient(135deg, #ff4d6d, #ff9f4a);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #fff;
+            font-weight: 600;
+        }
+        .ticket-icon { font-size: 1.5rem; }
+        .ticket-label { letter-spacing: 2px; font-size: 0.9rem; }
+        .ticket-main {
+            padding: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .ticket-info { flex: 1; }
+        .ticket-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .ticket-artist { font-size: 0.85rem; color: #ffb347; margin: 0.3rem 0; }
+        .ticket-date { font-size: 0.8rem; color: #aaa; margin: 0.2rem 0; }
+        .ticket-number {
+            font-size: 0.7rem;
+            color: #ff4d6d;
+            font-family: monospace;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+        }
+        .ticket-qr {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ffb347;
+        }
+        .ticket-footer {
+            background: rgba(0,0,0,0.4);
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #888;
+        }
+        .btn-download-ticket {
+            width: 100%;
+            background: rgba(255,77,109,0.2);
+            border: none;
+            padding: 0.8rem;
+            color: #ffb347;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border-top: 1px solid rgba(255,77,109,0.3);
+        }
+        .btn-download-ticket:hover {
+            background: #ff4d6d;
+            color: #fff;
+        }
+
+        .capsule-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(17, 17, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,77,109,0.3);
+        }
+        .capsule-icon {
+            font-size: 3rem;
+            color: #ffb347;
+            margin-bottom: 1rem;
+        }
+        .capsule-quote {
+            font-size: 1rem;
+            color: #ffb347;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+        .capsule-container textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,77,109,0.5);
+            border-radius: 24px;
+            padding: 1rem;
+            color: white;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+        .capsule-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .capsule-date input {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,77,109,0.5);
+            border-radius: 40px;
+            padding: 0.6rem 1rem;
+            color: white;
+            font-family: inherit;
+        }
+        .capsule-date span { color: #aaa; font-size: 0.9rem; }
+        .saved-capsule-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255,77,109,0.1);
+            border-radius: 20px;
+            border-left: 3px solid #ff4d6d;
+        }
+
+        .badge-wall {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(17, 17, 24, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,77,109,0.3);
+        }
+        .badge-wall h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #ffb347;
+        }
+        .badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            min-width: 80px;
+            transition: 0.2s;
+            opacity: 0.4;
+            filter: grayscale(0.5);
+        }
+        .badge-item.unlocked {
+            opacity: 1;
+            filter: grayscale(0);
+            background: linear-gradient(135deg, rgba(255,77,109,0.2), rgba(255,180,71,0.2));
+            border: 1px solid rgba(255,77,109,0.5);
+        }
+        .badge-icon { font-size: 2rem; }
+        .badge-name { font-size: 0.7rem; color: #ccc; }
+        .badge-item.unlocked .badge-name { color: #ffb347; }
+
+        body.memory-mode .hero h1::after {
+            content: " ✨ 永恒回忆 ✨";
+            font-size: 1rem;
+            display: block;
+            color: #ffb347;
+        }
+        body.memory-mode .countdown {
+            background: rgba(255,77,109,0.2);
+            border-left-color: #ffb347;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 全屏封面 -->
+<div class="fullscreen-cover" id="fullscreenCover">
+    <div class="cover-content">
+        <div class="cover-title">「 纯 妹 妹 」</div>
+        <div class="cover-sub">单依纯 · 深圳收官夜 · 永恒回响</div>
+        <button class="cover-btn" id="enterBtn">✨ 开启回忆之旅 ✨</button>
+        <div class="cover-hint">✨ 点击任意位置或按 Enter 键 ✨</div>
+    </div>
+</div>
+
+<div class="floating-container" id="floatingContainer"></div>
+<canvas id="starCanvas"></canvas>
+<canvas id="fireworksCanvas"></canvas>
+<img id="recordGif" src="back.gif" alt="唱片机" class="record-player" style="display: none;">
+<button class="lightup-btn" id="lightupBtn"><i class="fas fa-heart"></i> ✨ 点亮灯牌 ✨</button>
+<div class="wish-counter" id="wishCounter"><i class="fas fa-star"></i> 许愿星 <span id="wishCount">0</span></div>
+
+<nav class="navbar">
+    <div class="logo">✦ 纯妹妹·深圳 ✦</div>
+    <div class="nav-links">
+        <a href="#moments">瞬间</a><a href="#artists">纯妹妹</a><a href="#songlist">心动歌单</a><a href="#story">回忆</a><a href="#messages">留言</a>
+        <a href="#timeCapsule">时光胶囊</a><a href="#badgeWall">徽章</a>
+    </div>
+</nav>
+
+<div class="main-content" id="mainContent">
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="neon-text">「 纯 妹 妹 深 圳 站 」</h1>
+            <p>2026 · 单依纯「纯妹妹」世界巡回演唱会 · 深圳收官夜 · 十首典藏</p>
+            <a href="#songlist" class="btn-glow">聆听纯色之声 <i class="fas fa-headphones"></i></a>
+            <div class="countdown" style="margin-top: 2rem;">
+                <i class="fas fa-calendar-alt"></i> <span id="countdownText"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="moments" class="section-module">
+        <h2 class="section-title"><span>✨ 精彩瞬间 ✨</span></h2>
+        <div class="title-decoration"></div>
+        <div class="photo-grid" id="momentsGrid"></div>
+    </section>
+
+    <section id="artists" class="section-module">
+        <h2 class="section-title"><span>🎤 纯妹妹 · 舞台光影 🎤</span></h2>
+        <div class="title-decoration"></div>
+        <div class="carousel-container"><div class="carousel-track" id="carouselTrack"></div><button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button><button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button><div class="carousel-dots" id="carouselDots"></div></div>
+    </section>
+
+    <section id="songlist" class="section-module">
+        <h2 class="section-title"><span>🎶 纯妹妹 · 心动歌单 🎶</span></h2>
+        <div class="title-decoration"></div>
+        <div class="song-gallery-container">
+            <div class="song-gallery-track" id="songGalleryTrack"></div>
+            <button class="gallery-nav-btn gallery-prev" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="gallery-nav-btn gallery-next" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="gallery-dots" id="galleryDots"></div>
+    </section>
+
+    <section id="story" class="section-module">
+        <h2 class="section-title"><span>⏳ 时光隧道 · 深圳之夜 ⏳</span></h2>
+        <div class="title-decoration"></div>
+        <div class="timeline">
+            <div class="timeline-item"><div class="timeline-time">19:30</div><div class="timeline-desc">✨ 深圳湾体育中心，灯光渐暗，万人大合唱《纯妹妹》暖场。</div></div>
+            <div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-desc">🎤 单依纯一袭白裙登场，《在夜里跳舞》拉开序幕，全场沸腾。</div></div>
+            <div class="timeline-item"><div class="timeline-time">21:15</div><div class="timeline-desc">💎 特别环节：钢琴弹唱《踮起脚尖爱》，全场手机闪光灯汇成星海。</div></div>
+            <div class="timeline-item"><div class="timeline-time">22:30</div><div class="timeline-desc">🤝 神秘嘉宾合唱《分身》，舞台烟花绽放，气氛达到顶峰。</div></div>
+            <div class="timeline-item"><div class="timeline-time">23:50</div><div class="timeline-desc">🏁 安可曲《给电影人的情书》，依依不舍，约定再会。</div></div>
+        </div>
+    </section>
+
+    <section id="messages" class="section-module">
+        <h2 class="section-title"><span>💬 深圳记忆 · 留言墙 💬</span></h2>
+        <div class="title-decoration"></div>
+        <div class="message-form"><h3><i class="fas fa-pen-fancy"></i> 留下你的深圳回忆</h3>
+            <form id="messageForm"><input type="text" id="msgName" placeholder="你的昵称" required><textarea id="msgText" rows="3" placeholder="分享你的深圳记忆..." required></textarea><button type="submit" class="btn-glow" style="padding:0.6rem 1.5rem;">✨ 留下足迹 ✨</button></form>
+        </div>
+        <div class="messages-container" id="messageWall"></div>
+    </section>
+
+    <section id="digitalTicketSection" class="section-module">
+        <h2 class="section-title"><span>🎫 永恒珍藏 · 数字纪念票 🎫</span></h2>
+        <div class="title-decoration"></div>
+        <div class="digital-ticket" id="digitalTicket">
+            <div class="ticket-header"><span class="ticket-icon">🎫</span><span class="ticket-label">永恒珍藏 · 数字纪念票</span></div>
+            <div class="ticket-main">
+                <div class="ticket-info">
+                    <div class="ticket-title">「纯妹妹」深圳收官夜</div>
+                    <div class="ticket-artist">单依纯 · 世界巡回演唱会</div>
+                    <div class="ticket-date">2026.03.29 | 深圳湾体育中心</div>
+                    <div class="ticket-number" id="ticketNumber">NO. SHZ-<span id="randomTicketNum"></span></div>
+                </div>
+                <div class="ticket-qr"><i class="fas fa-microphone-alt"></i></div>
+            </div>
+            <div class="ticket-footer"><i class="fas fa-heartbeat"></i> 此票根为您的专属纪念，不可转让</div>
+            <button class="btn-download-ticket" id="downloadTicketBtn"><i class="fas fa-download"></i> 保存纪念票根</button>
+        </div>
+    </section>
+
+    <section id="timeCapsule" class="section-module">
+        <h2 class="section-title"><span>⏰ 时光胶囊 · 致未来的自己 ⏰</span></h2>
+        <div class="title-decoration"></div>
+        <div class="capsule-container">
+            <div class="capsule-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <p class="capsule-quote">“此刻的你，对未来的自己有什么想说的？”</p>
+            <textarea id="capsuleMessage" rows="3" placeholder="写下一段话，封存此刻的心情..."></textarea>
+            <div class="capsule-date"><input type="date" id="capsuleOpenDate" min="2027-01-01"><span>后开启</span></div>
+            <button id="sealCapsuleBtn" class="btn-glow" style="padding: 0.6rem 1.8rem;"><i class="fas fa-seal"></i> 封存时光</button>
+            <div id="savedCapsuleInfo" style="display: none;" class="saved-capsule-info"></div>
+        </div>
+    </section>
+
+    <section id="badgeWall" class="section-module">
+        <h2 class="section-title"><span>🏅 我的纪念徽章 🏅</span></h2>
+        <div class="title-decoration"></div>
+        <div class="badge-wall"><h3><i class="fas fa-medal"></i> 解锁专属成就</h3><div class="badges-grid" id="badgesGrid"></div></div>
+    </section>
+
+    <section class="section-module">
+        <h2 class="section-title"><span>🙏 致谢 · 幕后星光 🙏</span></h2>
+        <div class="title-decoration"></div>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;"><p>感谢所有乐迷与工作人员，每一束光芒都因你们而闪耀。</p><div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;"><span><i class="fas fa-guitar"></i> 音乐总监：L. Chen</span><span><i class="fas fa-lightbulb"></i> 灯光团队：Stellar Visions</span><span><i class="fas fa-crown"></i> 主办：星云娱乐</span></div><div class="share-buttons"><a href="#" id="shareWechat"><i class="fab fa-weixin"></i></a><a href="#" id="shareQQ"><i class="fab fa-qq"></i></a></div></div>
+    </section>
+</div>
+
+<div class="music-player"><div class="play-btn" id="playMusicBtn"><i class="fas fa-play"></i></div><div class="music-info"><i class="fas fa-headphones"></i> 还有什么更好的~</div></div>
+<audio id="bgMusic" loop preload="metadata"><source src="music.m4a" type="audio/mp4"></audio>
+<a href="#" class="go-top" id="goTopBtn"><i class="fas fa-chevron-up"></i></a>
+<div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img class="lightbox-img" id="lightboxImg" alt="大图"></div>
+<div class="music-modal" id="musicModal">
+    <div class="modal-content">
+        <div class="modal-bg" id="modalBg"></div>
+        <div class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></div>
+        <div class="modal-inner">
+            <div class="disc-cover" id="discCover"></div>
+            <div class="modal-song-name" id="modalSongName">纯妹妹</div>
+            <div class="lyrics-container" id="lyricsContainer"><div style="text-align:center; opacity:0.7;">🎵 等待加载歌词... 🎵</div></div>
+            <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="time-info"><span id="currentTime">0:00</span><span id="durationTime">0:00</span></div>
+            <div class="controls">
+                <div class="ctrl-btn" id="prevSongBtn"><i class="fas fa-backward-step"></i></div>
+                <div class="ctrl-btn" id="playPauseModalBtn"><i class="fas fa-play"></i></div>
+                <div class="ctrl-btn" id="nextSongBtn"><i class="fas fa-forward-step"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ========== 歌曲数据 ==========
+    const songList = ["还有什么更好的","纯妹妹","向日葵朝着夜","假如我们还爱着","我管不住我自己","有趣","我表示理解","还你茉莉","多少的光阴","珠玉","下雨天","月上歌","永不失联的爱","想你时风起","君","Dear friend","爱的回归线"];
+    let currentSongIndex = 0;
+    let audioElement = null;
+    let isPlaying = false;
+    let isSeeking = false;
+    let currentLyrics = [];
+    
+    function parseLrc(lrcText) {
+        const lines = [];
+        const regex = /\[(\d{2}):(\d{2})\.(\d{2,3})\](.*)/;
+        const linesArray = lrcText.split('\n');
+        for (const line of linesArray) {
+            const match = regex.exec(line);
+            if (match) {
+                const minutes = parseInt(match[1]);
+                const seconds = parseInt(match[2]);
+                const milliseconds = parseInt(match[3].padEnd(3, '0'));
+                const time = minutes * 60 + seconds + milliseconds / 1000;
+                const text = match[4].trim();
+                if (text) lines.push({ time, text });
+            }
+        }
+        lines.sort((a, b) => a.time - b.time);
+        return lines;
+    }
+    
+    async function loadLyrics(songIndex) {
+        const songNumber = songIndex + 1;
+        const lrcUrl = `sources/songs/${songNumber}.lrc`;
+        const container = document.getElementById('lyricsContainer');
+        try {
+            const response = await fetch(lrcUrl);
+            if (!response.ok) throw new Error('歌词文件不存在');
+            const lrcText = await response.text();
+            currentLyrics = parseLrc(lrcText);
+            if (container) {
+                if (currentLyrics.length === 0) {
+                    container.innerHTML = '<div style="text-align:center; opacity:0.6;">🎵 暂无歌词内容 🎵</div>';
+                } else {
+                    container.innerHTML = '';
+                    currentLyrics.forEach((line, idx) => {
+                        const div = document.createElement('div');
+                        div.className = 'lyrics-line';
+                        div.textContent = line.text;
+                        div.setAttribute('data-time', line.time);
+                        div.setAttribute('data-idx', idx);
+                        container.appendChild(div);
+                    });
+                }
+            }
+            return true;
+        } catch (error) {
+            console.warn(`加载歌词失败: ${lrcUrl}`);
+            if (container) {
+                container.innerHTML = '<div style="text-align:center; opacity:0.6;">🎵 暂无歌词文件<br>请添加 sources/songs/' + songNumber + '.lrc 🎵</div>';
+            }
+            currentLyrics = [];
+            return false;
+        }
+    }
+    
+    function updateLyricsHighlight(currentTime) {
+        if (!currentLyrics.length) return;
+        let activeIndex = -1;
+        for (let i = 0; i < currentLyrics.length; i++) {
+            if (currentTime >= currentLyrics[i].time) {
+                activeIndex = i;
+            } else {
+                break;
+            }
+        }
+        const lines = document.querySelectorAll('.lyrics-line');
+        lines.forEach((line, idx) => {
+            if (idx === activeIndex) {
+                line.classList.add('active');
+                line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                line.classList.remove('active');
+            }
+        });
+    }
+    
+    function loadAndPlay(index, autoPlay = true) {
+        if (audioElement) { 
+            audioElement.pause(); 
+            audioElement.removeEventListener("timeupdate", updateProgressAll); 
+            audioElement.removeEventListener("ended", onSongEnd); 
+            audioElement.removeEventListener("play", onSongPlayStart);
+        }
+        const songNumber = index + 1;
+        const audioUrl = `sources/songs/${songNumber}.m4a`;
+        const bgUrl = `sources/songs/${songNumber}.jpg`;
+        audioElement = new Audio(audioUrl);
+        audioElement.addEventListener("timeupdate", updateProgressAll);
+        audioElement.addEventListener("ended", onSongEnd);
+        audioElement.addEventListener("play", onSongPlayStart);
+        audioElement.load();
+        if (autoPlay) {
+            audioElement.play().then(() => { isPlaying = true; updatePlayButtons(true); }).catch(() => { isPlaying = false; updatePlayButtons(false); });
+        } else { isPlaying = false; updatePlayButtons(false); }
+        document.getElementById("modalSongName").innerText = songList[index];
+        document.getElementById("discCover").style.backgroundImage = `url(${bgUrl})`;
+        document.getElementById("modalBg").style.backgroundImage = `url(${bgUrl})`;
+        if (document.getElementById("discCover")) document.getElementById("discCover").style.backgroundSize = "cover";
+        currentSongIndex = index;
+        loadLyrics(index);
+    }
+    
+    function updateProgressAll() { 
+        if (!audioElement || isSeeking) return; 
+        let cur = audioElement.currentTime, dur = audioElement.duration; 
+        if (!isNaN(dur) && dur > 0) { 
+            let percent = (cur / dur) * 100; 
+            document.getElementById("progressFill").style.width = percent + "%"; 
+            document.getElementById("currentTime").innerText = formatTime(cur); 
+            document.getElementById("durationTime").innerText = formatTime(dur);
+            updateLyricsHighlight(cur);
+        } 
+    }
+    
+    function onSongEnd() { nextSong(); }
+    
+    function formatTime(sec) { 
+        if (isNaN(sec)) return "0:00"; 
+        let m = Math.floor(sec / 60), s = Math.floor(sec % 60); 
+        return `${m}:${s < 10 ? '0' : ''}${s}`; 
+    }
+    
+    function togglePlayPauseGlobal() { 
+        if (!audioElement) return; 
+        if (isPlaying) { 
+            audioElement.pause(); 
+            isPlaying = false; 
+        } else { 
+            audioElement.play().then(() => { isPlaying = true; }).catch(()=>{}); 
+        } 
+        updatePlayButtons(isPlaying); 
+    }
+    
+    function updatePlayButtons(playing) { 
+        let playBtn = document.getElementById("playPauseModalBtn"); 
+        if (playBtn) playBtn.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>'; 
+        let disc = document.getElementById("discCover"); 
+        if (disc) { 
+            if (playing) disc.classList.add("playing"); 
+            else disc.classList.remove("playing"); 
+        } 
+    }
+    
+    function nextSong() { 
+        let newIdx = (currentSongIndex + 1) % songList.length; 
+        loadAndPlay(newIdx, true); 
+    }
+    
+    function prevSong() { 
+        let newIdx = (currentSongIndex - 1 + songList.length) % songList.length; 
+        loadAndPlay(newIdx, true); 
+    }
+    
+    function closeModalKeepPlaying() {
+        const modal = document.getElementById("musicModal");
+        if (modal) modal.classList.remove("active");
+    }
+    
+    let galleryIndex = 0;
+    let itemsPerPage = 4;
+    
+    function updateGallery() {
+        const track = document.getElementById("songGalleryTrack");
+        const start = galleryIndex * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, songList.length);
+        track.innerHTML = "";
+        for (let i = start; i < end; i++) {
+            const song = songList[i];
+            const num = i + 1;
+            const imgUrl = `sources/songs/${num}.jpg`;
+            const card = document.createElement("div");
+            card.className = "song-photo-card";
+            card.innerHTML = `
+                <img class="song-photo-img" src="${imgUrl}" alt="${song}" onerror="this.src='https://picsum.photos/300/300?random=${num}'">
+                <div class="song-photo-info">
+                    <div class="song-photo-number">${String(num).padStart(2,'0')}</div>
+                    <div class="song-photo-name">${song}</div>
+                    <div class="play-badge"><i class="fas fa-circle-play"></i></div>
+                </div>
+            `;
+            card.addEventListener("click", () => { loadAndPlay(i, true); document.getElementById("musicModal").classList.add("active"); });
+            track.appendChild(card);
+        }
+        updateGalleryDots();
+    }
+    
+    function updateGalleryDots() {
+        const totalPages = Math.ceil(songList.length / itemsPerPage);
+        const dotsContainer = document.getElementById("galleryDots");
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement("div");
+            dot.className = "gallery-dot" + (i === galleryIndex ? " active" : "");
+            dot.addEventListener("click", () => { galleryIndex = i; updateGallery(); });
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    function nextGallery() { 
+        let max = Math.ceil(songList.length / itemsPerPage) - 1; 
+        if (galleryIndex < max) { galleryIndex++; updateGallery(); } 
+    }
+    
+    function prevGallery() { 
+        if (galleryIndex > 0) { galleryIndex--; updateGallery(); } 
+    }
+    
+    document.getElementById("galleryPrev").addEventListener("click", prevGallery);
+    document.getElementById("galleryNext").addEventListener("click", nextGallery);
+    
+    function handleResize() { 
+        if (window.innerWidth < 700) itemsPerPage = 2; 
+        else if (window.innerWidth < 1000) itemsPerPage = 3; 
+        else itemsPerPage = 4; 
+        updateGallery(); 
+    }
+    
+    window.addEventListener("resize", handleResize);
+    if (window.innerWidth < 700) itemsPerPage = 2; 
+    else if (window.innerWidth < 1000) itemsPerPage = 3; 
+    else itemsPerPage = 4;
+    updateGallery();
+
+    document.getElementById("playPauseModalBtn").addEventListener("click", togglePlayPauseGlobal);
+    document.getElementById("prevSongBtn").addEventListener("click", prevSong);
+    document.getElementById("nextSongBtn").addEventListener("click", nextSong);
+    document.getElementById("closeModalBtn").addEventListener("click", closeModalKeepPlaying);
+    document.getElementById("musicModal").addEventListener("click", (e) => { 
+        if (e.target === document.getElementById("musicModal")) closeModalKeepPlaying(); 
+    });
+    
+    const progressBarDiv = document.getElementById("progressBar");
+    if (progressBarDiv) {
+        progressBarDiv.addEventListener("mousedown", (e) => { 
+            if (!audioElement) return; 
+            isSeeking = true; 
+            const rect = progressBarDiv.getBoundingClientRect(); 
+            let percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width)); 
+            audioElement.currentTime = percent * audioElement.duration; 
+            updateProgressAll(); 
+            isSeeking = false; 
+        });
+    }
+
+    loadAndPlay(0, false);
+
+    const concertDate = new Date(2026, 2, 29);
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diffMs = concertDate.getTime() - today.getTime();
+    const countdownSpan = document.getElementById('countdownText');
+    if (diffMs > 0) {
+        const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+        countdownSpan.innerHTML = `✨ 距离深圳之夜还有 <span style="color:#ff4d6d;font-size:1.5rem;">${daysLeft}</span> 天 ✨`;
+    } else {
+        const daysPassed = Math.floor((today.getTime() - concertDate.getTime()) / (1000 * 60 * 60 * 24));
+        countdownSpan.innerHTML = `🎤 深圳之夜已过去 <span style="color:#ff4d6d;font-size:1.5rem;">${daysPassed}</span> 天，星光依旧✨`;
+        document.body.classList.add('memory-mode');
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) heroTitle.innerHTML = '「 纯 妹 妹 · 深 圳 回 忆 」';
+        const heroSub = document.querySelector('.hero p');
+        if (heroSub) heroSub.innerHTML = '2026.03.29 深圳湾 · 星光永不落幕';
+    }
+
+    let messagesData = [];
+    const STORAGE_KEY = 'shenzhen_concert_messages';
+    const defaultMessages = [
+        { id: Date.now()+1, name: "@深圳小纯迷", msg: "《在夜里跳舞》一出来，眼泪就止不住了，依纯真的太会唱了！" },
+        { id: Date.now()+2, name: "@南山听纯", msg: "深圳场的音响效果绝了，和依纯的声音完美融合。" },
+        { id: Date.now()+3, name: "@纯纯后援会", msg: "安可时全场大合唱《永不失联的爱》，这是属于我们的夜晚。" }
+    ];
+    function loadMessages() { const stored = localStorage.getItem(STORAGE_KEY); if (stored) messagesData = JSON.parse(stored); else messagesData = [...defaultMessages]; }
+    function saveMessages() { localStorage.setItem(STORAGE_KEY, JSON.stringify(messagesData)); }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    function renderMessages() {
+        const wall = document.getElementById('messageWall');
+        if (!wall) return;
+        wall.innerHTML = '';
+        messagesData.forEach(msg => {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            card.innerHTML = `<i class="fas fa-quote-left"></i><p style="margin: 0.8rem 0;">“${escapeHtml(msg.msg)}”</p><div style="margin-top: 1rem; font-weight: 600; color: #ffb347; display: flex; align-items: center; justify-content: space-between;"><span>— ${escapeHtml(msg.name)}</span><div style="display:flex; gap:12px;"><i class="fas fa-star wish-star" data-id="${msg.id}" style="cursor:pointer;"></i><i class="fas fa-trash-alt delete-msg" data-id="${msg.id}" style="cursor:pointer;"></i></div></div>`;
+            wall.appendChild(card);
+        });
+        document.querySelectorAll('.wish-star').forEach(star => { star.addEventListener('click', (e) => { e.stopPropagation(); const rect = star.getBoundingClientRect(); addWish(rect.left + rect.width/2, rect.top + rect.height/2); }); });
+        document.querySelectorAll('.delete-msg').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); const id = parseInt(btn.getAttribute('data-id')); messagesData = messagesData.filter(m => m.id !== id); saveMessages(); renderMessages(); }); });
+    }
+    function addNewMessage(name, text) { 
+        messagesData.unshift({ id: Date.now(), name: '@' + name.trim(), msg: text.trim() }); 
+        saveMessages(); 
+        renderMessages();
+        if (typeof window.updateMessageCount === 'function') window.updateMessageCount();
+    }
+    loadMessages(); renderMessages();
+    const messageForm = document.getElementById('messageForm');
+    if (messageForm) {
+        messageForm.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('msgName').value.trim(); const text = document.getElementById('msgText').value.trim(); if (!name || !text) return; addNewMessage(name, text); e.target.reset(); document.getElementById('messages').scrollIntoView({ behavior: 'smooth' }); });
+    }
+
+    const momentsGrid = document.getElementById("momentsGrid");
+    function loadMomentsImages() { 
+        let idx = 1, loaded = false; 
+        function tryNext() { 
+            const url = `sources/moments/M (${idx}).jpg`; 
+            const img = new Image(); 
+            img.onload = () => { 
+                const card = document.createElement("div"); 
+                card.className = "photo-card"; 
+                card.innerHTML = `<img src="${url}" loading="lazy"><div class="caption">深圳 · 光影第${idx}幕</div>`; 
+                momentsGrid.appendChild(card); 
+                idx++; 
+                tryNext(); 
+                loaded = true; 
+            }; 
+            img.onerror = () => { if (!loaded && idx === 1 && momentsGrid) momentsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">📁 未找到现场照片</div>`; }; 
+            img.src = url; 
+        } 
+        tryNext(); 
+    }
+    if (momentsGrid) loadMomentsImages();
+
+    let allImages = [], currentIdx = 0, totalCount = 0, track, prevBtn, nextBtn, dotsContainer, isTransitioning = false, autoTimer;
+    track = document.getElementById('carouselTrack'); 
+    prevBtn = document.getElementById('prevBtn'); 
+    nextBtn = document.getElementById('nextBtn'); 
+    dotsContainer = document.getElementById('carouselDots');
+    
+    function loadImageList(callback) { let idx=1, images=[]; function tryNext() { const url=`sources/P (${idx}).jpg`; const img=new Image(); img.onload=()=>{ images.push({url:url,caption:`纯妹妹 · 相片${idx}`}); idx++; tryNext(); }; img.onerror=()=>callback(images); img.src=url; } tryNext(); }
+    
+    function buildCarousel(images) { 
+        if(!images.length || !track){ 
+            if(track) track.innerHTML=`<div style="text-align:center;padding:3rem;">📁 未找到歌手照片</div>`; 
+            if(prevBtn) prevBtn.style.display='none'; 
+            if(nextBtn) nextBtn.style.display='none'; 
+            return; 
+        } 
+        totalCount=images.length; 
+        allImages=images; 
+        renderCurrentGroup(); 
+        updateCarouselDots(); 
+        startAutoSlide(); 
+    }
+    
+    function renderCurrentGroup() { 
+        if(totalCount===0 || !track) return; 
+        const prevIdx=(currentIdx-1+totalCount)%totalCount, nextIdx=(currentIdx+1)%totalCount; 
+        const items=[{img:allImages[prevIdx],type:'side',idx:prevIdx},{img:allImages[currentIdx],type:'center',idx:currentIdx},{img:allImages[nextIdx],type:'side',idx:nextIdx}]; 
+        track.innerHTML=''; 
+        items.forEach(item=>{ 
+            const card=document.createElement('div'); 
+            card.className='carousel-item'; 
+            if(item.type==='center') card.classList.add('active'); 
+            card.innerHTML=`<img src="${item.img.url}" alt="纯妹妹 ${item.idx+1}" loading="lazy"><div class="caption">${item.img.caption}</div>`; 
+            card.addEventListener('click',()=>{ if(item.type!=='center'){ if(item.idx<currentIdx) prevSlide(); else if(item.idx>currentIdx) nextSlide(); } }); 
+            track.appendChild(card); 
+        }); 
+    }
+    
+    function updateCarouselDots(){ 
+        if(!dotsContainer) return;
+        dotsContainer.innerHTML=''; 
+        for(let i=0;i<totalCount;i++){ 
+            const dot=document.createElement('div'); 
+            dot.className='dot'; 
+            if(i===currentIdx) dot.classList.add('active'); 
+            dot.addEventListener('click',()=>{ if(isTransitioning) return; if(i===currentIdx) return; currentIdx=i; renderCurrentGroup(); updateCarouselDots(); }); 
+            dotsContainer.appendChild(dot); 
+        } 
+    }
+    
+    function nextSlide(){ if(isTransitioning||totalCount===0) return; isTransitioning=true; currentIdx=(currentIdx+1)%totalCount; renderCurrentGroup(); updateCarouselDots(); setTimeout(()=>{ isTransitioning=false; },450); }
+    function prevSlide(){ if(isTransitioning||totalCount===0) return; isTransitioning=true; currentIdx=(currentIdx-1+totalCount)%totalCount; renderCurrentGroup(); updateCarouselDots(); setTimeout(()=>{ isTransitioning=false; },450); }
+    if(prevBtn) prevBtn.addEventListener('click',(e)=>{e.preventDefault(); prevSlide();});
+    if(nextBtn) nextBtn.addEventListener('click',(e)=>{e.preventDefault(); nextSlide();});
+    function startAutoSlide(){ if(autoTimer) clearInterval(autoTimer); autoTimer=setInterval(()=>{ if(!isTransitioning) nextSlide(); },4000); }
+    function stopAutoSlide(){ if(autoTimer) clearInterval(autoTimer); autoTimer=null; }
+    const carouselContainer = document.querySelector('.carousel-container'); 
+    if(carouselContainer){ carouselContainer.addEventListener('mouseenter', stopAutoSlide); carouselContainer.addEventListener('mouseleave', startAutoSlide); }
+    loadImageList((images)=>buildCarousel(images));
+
+    const audioBg = document.getElementById('bgMusic'); 
+    const playBtnBg = document.getElementById('playMusicBtn'); 
+    const recordGif = document.getElementById('recordGif');
+    let isBgPlaying = false;
+    if (audioBg && playBtnBg) {
+        audioBg.preload='metadata'; 
+        audioBg.load();
+        function toggleBgPlay(){ 
+            if(isBgPlaying){ 
+                audioBg.pause(); 
+                playBtnBg.innerHTML='<i class="fas fa-play"></i>'; 
+                isBgPlaying=false; 
+                if(recordGif) recordGif.style.display='none'; 
+            }else{ 
+                audioBg.play().then(()=>{ 
+                    playBtnBg.innerHTML='<i class="fas fa-pause"></i>'; 
+                    isBgPlaying=true; 
+                    if(recordGif) recordGif.style.display='block'; 
+                }).catch(()=>{}); 
+            } 
+        }
+        playBtnBg.addEventListener('click',toggleBgPlay);
+    }
+
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('revealed'); observer.unobserve(entry.target); } }); },{threshold:0.15});
+    fadeElements.forEach(el=>observer.observe(el));
+    
+    const goTopBtn = document.getElementById('goTopBtn');
+    window.addEventListener('scroll',()=>{ if(goTopBtn) goTopBtn.classList.toggle('visible',window.scrollY>600); });
+    if(goTopBtn) goTopBtn.addEventListener('click',(e)=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+    
+    document.querySelectorAll('.nav-links a, .hero .btn-glow').forEach(anchor=>{ anchor.addEventListener('click',function(e){ if(this.getAttribute('href')&&this.getAttribute('href').startsWith('#')){ e.preventDefault(); const target=document.getElementById(this.getAttribute('href').substring(1)); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); } }); });
+
+    const fireworksCanvas = document.getElementById('fireworksCanvas'); 
+    let fireworkCountGlobal = parseInt(localStorage.getItem('badge_firework') || '0');
+    if(fireworksCanvas){
+        const fireworksCtx = fireworksCanvas.getContext('2d'); 
+        let fireworks=[], fireParticles=[];
+        function resizeFireworksCanvas(){ fireworksCanvas.width=window.innerWidth; fireworksCanvas.height=window.innerHeight; }
+        window.addEventListener('resize',resizeFireworksCanvas); resizeFireworksCanvas();
+        class Firework { constructor(x,y,targetX,targetY){ this.x=x; this.y=y; this.targetX=targetX; this.targetY=targetY; this.radius=2; this.color=`hsl(${Math.random()*360},100%,60%)`; this.speedX=(targetX-x)/30; this.speedY=(targetY-y)/30; this.alive=true; this.age=0; this.maxAge=40; } update(){ this.x+=this.speedX; this.y+=this.speedY; this.age++; if(this.age>=this.maxAge||(Math.abs(this.x-this.targetX)<5&&Math.abs(this.y-this.targetY)<5)){ this.alive=false; for(let i=0;i<60;i++){ const angle=Math.random()*Math.PI*2; const speed=Math.random()*3+1; const vx=Math.cos(angle)*speed, vy=Math.sin(angle)*speed; fireParticles.push(new FireParticle(this.targetX,this.targetY,vx,vy)); } } } draw(ctx){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); } }
+        class FireParticle { constructor(x,y,vx,vy){ this.x=x; this.y=y; this.vx=vx; this.vy=vy; this.size=Math.random()*3+1; this.color=`hsl(${Math.random()*360},100%,60%)`; this.life=1; this.decay=0.02; } update(){ this.x+=this.vx; this.y+=this.vy; this.vy+=0.1; this.life-=this.decay; return this.life>0; } draw(ctx){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=this.color; ctx.globalAlpha=this.life; ctx.fill(); ctx.globalAlpha=1; } }
+        function updateFireworks(){ for(let i=fireworks.length-1;i>=0;i--){ fireworks[i].update(); if(!fireworks[i].alive) fireworks.splice(i,1); } for(let i=fireParticles.length-1;i>=0;i--){ if(!fireParticles[i].update()) fireParticles.splice(i,1); } }
+        function drawFireworks(){ fireworksCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height); fireworks.forEach(f=>f.draw(fireworksCtx)); fireParticles.forEach(p=>p.draw(fireworksCtx)); }
+        function animateFireworks(){ updateFireworks(); drawFireworks(); requestAnimationFrame(animateFireworks); } animateFireworks();
+        function createFirework(x,y){ 
+            fireworks.push(new Firework(x,y,x,y-280));
+            fireworkCountGlobal++;
+            localStorage.setItem('badge_firework', fireworkCountGlobal);
+            if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters();
+        }
+        document.body.addEventListener('click',(e)=>{ if(e.target.closest('.music-modal')||e.target.closest('.song-photo-card')||e.target.closest('.music-player')||e.target.closest('.navbar')||e.target.closest('.go-top')||e.target.closest('.lightup-btn')||e.target.closest('.wish-counter')||e.target.closest('.delete-msg')||e.target.closest('.wish-star')||e.target.closest('.carousel-btn')||e.target.closest('.gallery-nav-btn')) return; createFirework(e.clientX,e.clientY); });
+    }
+
+    const lightupBtnDom = document.getElementById('lightupBtn');
+    let lightupCountGlobal = parseInt(localStorage.getItem('badge_lightup') || '0');
+    function createLightupCard(x,y){ const card=document.createElement('div'); const msgs=['✨ 纯妹妹 ✨','💖 深圳我爱你 💖','🎤 依纯 forever 🎤']; const randomMsg=msgs[Math.floor(Math.random()*msgs.length)]; card.innerHTML=`<div style="background: linear-gradient(135deg, #ff4d6d, #ffb347); padding: 0.5rem 1rem; border-radius: 40px; color: white; font-weight: bold; box-shadow: 0 0 15px rgba(255,77,109,0.6); white-space: nowrap;"><i class="fas fa-heart"></i> ${randomMsg}</div>`; card.style.position='fixed'; card.style.left=x+'px'; card.style.top=y+'px'; card.style.zIndex='1000'; card.style.pointerEvents='none'; card.style.transition='all 2s ease-out'; document.body.appendChild(card); setTimeout(()=>{ card.style.transform='translateY(-200px)'; card.style.opacity='0'; },50); setTimeout(()=>card.remove(),2000); }
+    if(lightupBtnDom){
+        lightupBtnDom.addEventListener('click',(e)=>{ 
+            e.stopPropagation(); 
+            lightupCountGlobal++;
+            localStorage.setItem('badge_lightup', lightupCountGlobal);
+            if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters();
+            for(let i=0;i<6;i++){ const x=Math.random()*(window.innerWidth-100)+50; const y=Math.random()*(window.innerHeight-150)+80; createLightupCard(x,y); } 
+            const rect=lightupBtnDom.getBoundingClientRect(); 
+            createLightupCard(rect.left+rect.width/2,rect.top); 
+        });
+    }
+    
+    const floatingContainerDom=document.getElementById('floatingContainer'); 
+    if(floatingContainerDom){
+        for(let i=0;i<40;i++){ const el=document.createElement('div'); el.className='floating-element'; const icons=['fa-star','fa-music']; const colors=['#ffb347','#ff4d6d','#ff66cc']; el.innerHTML=`<i class="fas ${icons[i%2]}" style="color:${colors[i%3]}"></i>`; el.style.fontSize=Math.random()*24+12+'px'; el.style.left=Math.random()*100+'%'; el.style.animationDuration=Math.random()*15+10+'s'; el.style.animationDelay=Math.random()*15+'s'; floatingContainerDom.appendChild(el); }
+    }
+
+    // 许愿星 - 使用 sessionStorage（关闭标签页后清空）
+    let wishCount = parseInt(sessionStorage.getItem('wish_count') || '0'); 
+    const wishCountSpan = document.getElementById('wishCount');
+    if(wishCountSpan) wishCountSpan.innerText = wishCount;
+    function createWishStar(x,y){ const star=document.createElement('div'); star.innerHTML='<i class="fas fa-star" style="color:#ffcc33; text-shadow:0 0 5px gold;"></i>'; star.style.position='fixed'; star.style.left=x+'px'; star.style.top=y+'px'; star.style.fontSize='24px'; star.style.zIndex='1000'; star.style.pointerEvents='none'; star.style.transition='all 1s ease-out'; document.body.appendChild(star); setTimeout(()=>{ star.style.transform='translateY(-150px) rotate(30deg)'; star.style.opacity='0'; },10); setTimeout(()=>star.remove(),1000); }
+    function addWish(x,y){ 
+        wishCount++; 
+        sessionStorage.setItem('wish_count', wishCount);
+        if(wishCountSpan) wishCountSpan.innerText = wishCount; 
+        createWishStar(x,y);
+        if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters();
+    }
+    document.body.addEventListener('click',(e)=>{ if(e.target.closest('.music-modal')||e.target.closest('.song-photo-card')||e.target.closest('.music-player')||e.target.closest('.navbar')||e.target.closest('.go-top')||e.target.closest('.lightup-btn')||e.target.closest('.carousel-btn')||e.target.closest('.message-form')||e.target.closest('.share-buttons')||e.target.closest('a')||e.target.closest('button')||e.target.closest('.delete-msg')||e.target.closest('.wish-star')||e.target.closest('.gallery-nav-btn')) return; addWish(e.clientX, e.clientY); });
+
+    const starCanvasDom = document.getElementById('starCanvas'); 
+    if(starCanvasDom){
+        const starCtxDom = starCanvasDom.getContext('2d'); 
+        let sw = window.innerWidth, sh = window.innerHeight; 
+        let starParticles = []; 
+        let mouseX = sw/2, mouseY = sh/2; 
+        
+        function resizeStarCanvas() { sw = window.innerWidth; sh = window.innerHeight; starCanvasDom.width = sw; starCanvasDom.height = sh; }
+        window.addEventListener('resize', resizeStarCanvas); resizeStarCanvas();
+        
+        const pastelColors = ['#FFB7B2', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF', '#C0F2E8', '#FFD1DC'];
+        
+        function createStarParticle(x, y) { 
+            const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+            return { x: x, y: y, size: Math.random() * 6 + 3, color: color, life: 1.0, speedX: (Math.random() - 0.5) * 2.5, speedY: (Math.random() - 0.5) * 2 - 1.2 }; 
+        }
+        
+        function updateStarParticles() { 
+            for (let i = starParticles.length-1; i >= 0; i--) { 
+                const p = starParticles[i]; 
+                p.x += p.speedX; p.y += p.speedY; p.life -= 0.02; 
+                if (p.life <= 0 || p.x < 0 || p.x > sw || p.y < 0 || p.y > sh) starParticles.splice(i,1); 
+            } 
+            if (Math.random() < 0.3) { 
+                for (let i = 0; i < 2; i++) starParticles.push(createStarParticle(mouseX + (Math.random() - 0.5) * 50, mouseY + (Math.random() - 0.5) * 50)); 
+            } 
+        }
+        
+        function drawStarParticles() { 
+            starCtxDom.clearRect(0, 0, sw, sh); 
+            for (const p of starParticles) { 
+                starCtxDom.beginPath(); starCtxDom.arc(p.x, p.y, p.size, 0, Math.PI * 2); starCtxDom.fillStyle = p.color; starCtxDom.fill(); 
+                starCtxDom.shadowBlur = 12; starCtxDom.shadowColor = p.color; 
+            } 
+            starCtxDom.shadowBlur = 0; 
+        }
+        
+        function animateStars() { updateStarParticles(); drawStarParticles(); requestAnimationFrame(animateStars); } 
+        animateStars();
+        
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; for (let i = 0; i < 3; i++) starParticles.push(createStarParticle(mouseX + (Math.random() - 0.5) * 20, mouseY + (Math.random() - 0.5) * 20)); });
+        document.addEventListener('touchmove', (e) => { const touch = e.touches[0]; mouseX = touch.clientX; mouseY = touch.clientY; for (let i = 0; i < 4; i++) starParticles.push(createStarParticle(mouseX + (Math.random() - 0.5) * 20, mouseY + (Math.random() - 0.5) * 20)); });
+    }
+
+    const shareWechat = document.getElementById('shareWechat');
+    const shareQQ = document.getElementById('shareQQ');
+    if (shareWechat) shareWechat.addEventListener('click', () => alert('请点击右上角菜单选择「分享给朋友」或「分享到朋友圈」💖'));
+    if (shareQQ) shareQQ.addEventListener('click', () => { window.open(`https://connect.qq.com/widget/shareqq/index.html?url=${window.location.href}&title=单依纯「纯妹妹」深圳演唱会`, '_blank'); });
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    function openLightbox(src) { if(lightboxImg) lightboxImg.src = src; if(lightbox) lightbox.classList.add('active'); }
+    function closeLightbox() { if(lightbox) lightbox.classList.remove('active'); }
+    const lightboxClose = document.querySelector('.lightbox-close');
+    if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if(lightbox) lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+    document.body.addEventListener('click', (e) => {
+        let targetImg = e.target.closest('img');
+        if (targetImg && targetImg.id !== 'recordGif' && !targetImg.closest('.music-modal')) {
+            openLightbox(targetImg.src);
+            e.stopPropagation();
+        }
+    });
+
+    // ========== 鼠标光晕跟随 ==========
+    document.addEventListener('mousemove', (e) => {
+        document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+        document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // ========== 数字纪念门票 ==========
+    function generateTicketNumber() {
+        const date = new Date();
+        const seq = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+        return `${date.getFullYear()}${(date.getMonth()+1).toString().padStart(2,'0')}${date.getDate().toString().padStart(2,'0')}${seq}`;
+    }
+    const ticketNumSpan = document.getElementById('randomTicketNum');
+    if (ticketNumSpan) {
+        const savedTicket = localStorage.getItem('concert_ticket_number');
+        if (savedTicket) ticketNumSpan.innerText = savedTicket;
+        else { const newTicket = generateTicketNumber(); ticketNumSpan.innerText = newTicket; localStorage.setItem('concert_ticket_number', newTicket); }
+    }
+    const downloadBtn = document.getElementById('downloadTicketBtn');
+    if (downloadBtn && typeof html2canvas !== 'undefined') {
+        downloadBtn.addEventListener('click', () => {
+            const ticket = document.getElementById('digitalTicket');
+            html2canvas(ticket, { scale: 2, backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'yichun_concert_ticket.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(() => alert('保存失败，可手动截图保存 💖'));
+        });
+    }
+
+    // ========== 时光胶囊 ==========
+    const sealBtn = document.getElementById('sealCapsuleBtn');
+    const capsuleMessage = document.getElementById('capsuleMessage');
+    const capsuleDate = document.getElementById('capsuleOpenDate');
+    const savedCapsuleInfo = document.getElementById('savedCapsuleInfo');
+    function loadCapsule() {
+        const saved = localStorage.getItem('concert_time_capsule');
+        if (saved) {
+            try {
+                const capsule = JSON.parse(saved);
+                const openDate = new Date(capsule.openDate);
+                const today = new Date();
+                if (openDate <= today) {
+                    savedCapsuleInfo.style.display = 'block';
+                    savedCapsuleInfo.innerHTML = `<i class="fas fa-envelope-open"></i><strong>📬 时光胶囊已开启</strong><br><p style="margin-top:0.5rem;">${escapeHtml(capsule.message)}</p><small>封存于 ${new Date(capsule.createdAt).toLocaleDateString()}</small>`;
+                    if (sealBtn) sealBtn.style.display = 'none';
+                    if (capsuleMessage) capsuleMessage.disabled = true;
+                    if (capsuleDate) capsuleDate.disabled = true;
+                } else {
+                    savedCapsuleInfo.style.display = 'block';
+                    savedCapsuleInfo.innerHTML = `<i class="fas fa-clock"></i><strong>⏰ 时光胶囊已封存</strong><br><small>将于 ${capsule.openDate} 后开启</small>`;
+                    if (sealBtn) sealBtn.style.display = 'none';
+                    if (capsuleMessage) capsuleMessage.disabled = true;
+                    if (capsuleDate) capsuleDate.disabled = true;
+                }
+                if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters();
+            } catch(e) {}
+        }
+    }
+    if (sealBtn) {
+        sealBtn.addEventListener('click', () => {
+            const message = capsuleMessage ? capsuleMessage.value.trim() : '';
+            const openDate = capsuleDate ? capsuleDate.value : '';
+            if (!message) { alert('请写下一段话 💌'); return; }
+            if (!openDate) { alert('请选择开启日期 ✨'); return; }
+            localStorage.setItem('concert_time_capsule', JSON.stringify({ message, createdAt: new Date().toISOString(), openDate, location: '深圳', concert: '纯妹妹·深圳收官夜' }));
+            alert('✨ 时光已封存！✨');
+            loadCapsule();
+            if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters();
+        });
+    }
+    loadCapsule();
+
+    // ========== 徽章成就系统 ==========
+    let songPlayCountGlobal = parseInt(localStorage.getItem('badge_song_play') || '0');
+    let messageCountGlobal = parseInt(localStorage.getItem('badge_message') || '0');
+    let capsuleSavedGlobal = localStorage.getItem('concert_time_capsule') !== null;
+    function onSongPlayStart() { songPlayCountGlobal++; localStorage.setItem('badge_song_play', songPlayCountGlobal); if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters(); }
+    window.updateMessageCount = function() { messageCountGlobal++; localStorage.setItem('badge_message', messageCountGlobal); if (typeof window.updateBadgeCounters === 'function') window.updateBadgeCounters(); };
+    function updateBadgeCounters() {
+        capsuleSavedGlobal = localStorage.getItem('concert_time_capsule') !== null;
+        const badges = [
+            { name: '夜莺聆听者', icon: 'fa-moon', condition: () => songPlayCountGlobal >= 1 },
+            { name: '留言者', icon: 'fa-comment-dots', condition: () => messageCountGlobal >= 1 },
+            { name: '许愿星', icon: 'fa-star', condition: () => wishCount >= 10 },
+            { name: '烟火收藏家', icon: 'fa-fire', condition: () => fireworkCountGlobal >= 20 },
+            { name: '时光旅人', icon: 'fa-clock', condition: () => capsuleSavedGlobal },
+            { name: '纯真之心', icon: 'fa-gem', condition: () => lightupCountGlobal >= 3 }
+        ];
+        const badgesGrid = document.getElementById('badgesGrid');
+        if (badgesGrid) {
+            badgesGrid.innerHTML = '';
+            badges.forEach(badge => {
+                const isUnlocked = badge.condition();
+                const badgeDiv = document.createElement('div');
+                badgeDiv.className = `badge-item ${isUnlocked ? 'unlocked' : ''}`;
+                badgeDiv.innerHTML = `<div class="badge-icon"><i class="fas ${badge.icon}"></i></div><div class="badge-name">${badge.name}</div>`;
+                badgesGrid.appendChild(badgeDiv);
+            });
+        }
+    }
+    window.updateBadgeCounters = updateBadgeCounters;
+    updateBadgeCounters();
+
+    // ========== 欢迎弹窗（首次访问） ==========
+    if (!localStorage.getItem('visited_concert_page')) {
+        setTimeout(() => {
+            const welcomeDiv = document.createElement('div');
+            welcomeDiv.className = 'welcome-modal';
+            welcomeDiv.innerHTML = `<div class="welcome-content"><i class="fas fa-heart" style="color:#ff4d6d; font-size:3rem;"></i><h3>欢迎来到纯妹妹的深圳之夜</h3><p>这里封存着2026.03.29的每一刻感动<br>愿这份记忆，陪你走过漫长岁月</p><button onclick="this.parentElement.parentElement.remove()">开启回忆之旅 →</button></div>`;
+            document.body.appendChild(welcomeDiv);
+            localStorage.setItem('visited_concert_page', 'true');
+        }, 1500);
+    }
+
+    // ========== 创意动画 - 流星（从右上角飞到左边中部，带拖尾） ==========
+    const cover = document.getElementById('fullscreenCover');
+    const mainContent = document.getElementById('mainContent');
+    const enterBtn = document.getElementById('enterBtn');
+    const modules = document.querySelectorAll('.section-module');
+
+    // 流星主体和拖尾粒子
+    function createShootingStar() {
+        const star = document.createElement('div');
+        star.className = 'shooting-star';
+        document.body.appendChild(star);
+
+        // 起点：右上角（屏幕外）
+        const startX = window.innerWidth + 50;
+        const startY = -50;
+        // 终点：左边中部（左1/4处，垂直居中）
+        const endX = window.innerWidth * 0.25;
+        const endY = window.innerHeight * 0.5;
+
+        // 动画总时长
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        function animateStar(now) {
+            const elapsed = now - startTime;
+            let t = Math.min(1, elapsed / duration);
+            // 缓动曲线 ease-out
+            const easeOut = 1 - Math.pow(1 - t, 2);
+            const currentX = startX + (endX - startX) * easeOut;
+            const currentY = startY + (endY - startY) * easeOut;
+            star.style.left = currentX + 'px';
+            star.style.top = currentY + 'px';
+            star.style.transform = `rotate(${easeOut * 360}deg) scale(${0.8 + easeOut * 0.5})`;
+
+            if (t < 1) {
+                requestAnimationFrame(animateStar);
+            } else {
+                // 动画结束，炸裂
+                star.remove();
+                // 产生冲击波
+                const shock = document.createElement('div');
+                shock.className = 'shockwave';
+                shock.style.left = endX + 'px';
+                shock.style.top = endY + 'px';
+                document.body.appendChild(shock);
+                setTimeout(() => shock.remove(), 700);
+
+                // 炸裂小星星
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const shard = document.createElement('div');
+                        shard.className = 'star-shard';
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = 120 + Math.random() * 280;
+                        shard.style.left = endX + 'px';
+                        shard.style.top = endY + 'px';
+                        shard.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+                        shard.style.setProperty('--dy', Math.sin(angle) * distance - 80 + 'px');
+                        document.body.appendChild(shard);
+                        setTimeout(() => shard.remove(), 800);
+                    }, i * 8);
+                }
+
+                // 拉出模块
+                setTimeout(() => {
+                    const firstModule = document.querySelector('#moments');
+                    if (firstModule) firstModule.classList.add('revealed');
+                    const beam = document.createElement('div');
+                    beam.className = 'light-beam';
+                    document.body.appendChild(beam);
+                    setTimeout(() => beam.remove(), 800);
+                }, 300);
+            }
+        }
+
+        // 生成拖尾粒子（每帧位置记录）
+        let lastX = startX, lastY = startY;
+        function addTail(x, y) {
+            const tail = document.createElement('div');
+            tail.className = 'star-tail';
+            tail.style.left = x + 'px';
+            tail.style.top = y + 'px';
+            document.body.appendChild(tail);
+            setTimeout(() => tail.remove(), 600);
+        }
+
+        function animateWithTail(now) {
+            const elapsed = now - startTime;
+            let t = Math.min(1, elapsed / duration);
+            const easeOut = 1 - Math.pow(1 - t, 2);
+            const currentX = startX + (endX - startX) * easeOut;
+            const currentY = startY + (endY - startY) * easeOut;
+            // 每隔一小段时间添加拖尾
+            if (Math.abs(currentX - lastX) > 8 || Math.abs(currentY - lastY) > 8) {
+                addTail(currentX, currentY);
+                lastX = currentX;
+                lastY = currentY;
+            }
+            star.style.left = currentX + 'px';
+            star.style.top = currentY + 'px';
+            star.style.transform = `rotate(${easeOut * 360}deg) scale(${0.8 + easeOut * 0.5})`;
+
+            if (t < 1) {
+                requestAnimationFrame(animateWithTail);
+            } else {
+                star.remove();
+                // 炸裂...
+                const shock = document.createElement('div');
+                shock.className = 'shockwave';
+                shock.style.left = endX + 'px';
+                shock.style.top = endY + 'px';
+                document.body.appendChild(shock);
+                setTimeout(() => shock.remove(), 700);
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const shard = document.createElement('div');
+                        shard.className = 'star-shard';
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = 120 + Math.random() * 280;
+                        shard.style.left = endX + 'px';
+                        shard.style.top = endY + 'px';
+                        shard.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+                        shard.style.setProperty('--dy', Math.sin(angle) * distance - 80 + 'px');
+                        document.body.appendChild(shard);
+                        setTimeout(() => shard.remove(), 800);
+                    }, i * 8);
+                }
+                setTimeout(() => {
+                    const firstModule = document.querySelector('#moments');
+                    if (firstModule) firstModule.classList.add('revealed');
+                    const beam = document.createElement('div');
+                    beam.className = 'light-beam';
+                    document.body.appendChild(beam);
+                    setTimeout(() => beam.remove(), 800);
+                }, 300);
+            }
+        }
+
+        requestAnimationFrame(animateWithTail);
+    }
+
+    // 音符飞入
+    function createFlyingNotes() {
+        const songSection = document.querySelector('#songlist');
+        if (!songSection) return;
+        const rect = songSection.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+            setTimeout(() => {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.innerHTML = ['♪', '♫', '🎵', '🎶'][Math.floor(Math.random() * 4)];
+                note.style.left = '0px';
+                note.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                note.style.setProperty('--fly-y', (Math.random() * 200 - 100) + 'px');
+                document.body.appendChild(note);
+                setTimeout(() => note.remove(), 800);
+            }, i * 80);
+        }
+    }
+
+    // 光柱
+    function addLightBeam() {
+        const beam = document.createElement('div');
+        beam.className = 'light-beam';
+        document.body.appendChild(beam);
+        setTimeout(() => beam.remove(), 1000);
+    }
+
+    // 启动动画序列
+    function startCreativeAnimations() {
+        createShootingStar();
+        setTimeout(() => addLightBeam(), 600);
+        setTimeout(() => createFlyingNotes(), 1200);
+        // 其他模块按顺序出现（不包含花瓣雨）
+        const modulesList = Array.from(modules).filter(m => m.id !== 'moments'); // moments 已经通过流星拉出
+        modulesList.forEach((module, index) => {
+            setTimeout(() => {
+                module.classList.add('revealed');
+            }, 1500 + index * 300);
+        });
+    }
+
+    function openThePage() {
+        cover.classList.add('hide');
+        setTimeout(() => {
+            mainContent.classList.add('visible');
+            startCreativeAnimations();
+        }, 200);
+    }
+
+    enterBtn.addEventListener('click', openThePage);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !cover.classList.contains('hide')) openThePage(); });
+    cover.addEventListener('click', (e) => { if (e.target === cover || e.target.closest('.cover-content')) openThePage(); });
+
+    // ========== 视差滚动 ==========
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach((el, i) => { el.style.transform = `translateY(${scrolled * 0.05 * (i % 2 === 0 ? 1 : -1)}px)`; });
+    });
+
+    // ========== 音乐记忆播放 ==========
+    function saveMusicState() { if (audioElement) { localStorage.setItem('last_song_index', currentSongIndex); localStorage.setItem('last_song_time', audioElement.currentTime); localStorage.setItem('last_play_time', Date.now()); } }
+    function restoreMusicState() {
+        const lastIndex = localStorage.getItem('last_song_index');
+        const lastTime = localStorage.getItem('last_song_time');
+        const lastPlayTime = localStorage.getItem('last_play_time');
+        if (lastIndex && lastTime && lastPlayTime && (Date.now() - lastPlayTime < 24 * 60 * 60 * 1000)) {
+            loadAndPlay(parseInt(lastIndex), false);
+            if (audioElement) audioElement.currentTime = parseFloat(lastTime);
+        }
+    }
+    window.addEventListener('beforeunload', saveMusicState);
+    restoreMusicState();
+
+    console.log('✨ 创意动画已启动：流星从右上角飞到左边中部，拖尾对齐 ✨');
+</script>
+</body>
+</html>
