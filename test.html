@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>纯妹妹 · 单依纯深圳演唱会 | 永恒回响 · 十首典藏</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0f;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: floatUp 15s linear infinite;
+            filter: drop-shadow(0 0 2px rgba(255,77,109,0.3));
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 12;
+        }
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        .navbar, .hero, section, footer, .music-player, .go-top, .record-player, .lightup-btn, .wish-counter {
+            position: relative;
+            z-index: 5;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,77,109,0.5);
+            cursor: default;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 2001;
+        }
+        .lightbox-close:hover {
+            color: #ff4d6d;
+            transform: scale(1.1);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a2a; }
+        ::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
+        .neon-text { text-shadow: 0 0 5px #ff4d6d, 0 0 10px #ff1e4d, 0 0 20px #b80c3a; }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 12, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 77, 109, 0.3);
+            z-index: 100;
+        }
+        .logo {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff4d6d, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #eee; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .nav-links a:hover { color: #ff4d6d; text-shadow: 0 0 5px #ff4d6d; }
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 1.2rem; }
+            .nav-links { gap: 1.2rem; }
+            .logo { font-size: 1.2rem; }
+            .nav-links a { font-size: 0.85rem; }
+        }
+
+        .record-player {
+            position: fixed;
+            top: 80px;
+            left: 1.2rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255,77,109,0.4);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+        }
+        @media (max-width: 768px) {
+            .record-player { width: 70px; height: 70px; top: 70px; left: 0.8rem; }
+        }
+
+        .lightup-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #ff4d6d, #ff9f4a);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255,77,109,0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 100;
+        }
+        .wish-counter {
+            position: fixed;
+            top: 5rem;
+            right: 1.2rem;
+            background: rgba(255,77,109,0.3);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,77,109,0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 100;
+            cursor: pointer;
+            color: #ffcc88;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: transparent;
+        }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 1rem; }
+        .btn-glow {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff4d6d, #ff9f4a);
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #0a0a0f;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
+        }
+        .countdown {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            border-left: 3px solid #ff4d6d;
+        }
+        section { padding: 5rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem; }
+        .section-title span { background: linear-gradient(135deg, #ff4d6d, #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .title-decoration { width: 80px; height: 3px; background: #ff4d6d; margin: 0.5rem auto 0; border-radius: 4px; }
+
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
+        .photo-card {
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(17, 17, 24, 0.8);
+            backdrop-filter: blur(4px);
+            transition: 0.25s ease;
+            cursor: pointer;
+        }
+        .photo-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .photo-card:hover img { transform: scale(1.03); }
+        .photo-card .caption { padding: 0.8rem; text-align: center; background: rgba(0,0,0,0.6); }
+
+        .carousel-container { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; overflow: hidden; padding: 40px 0 60px; }
+        .carousel-track { display: flex; align-items: center; justify-content: center; gap: 1.5rem; transition: all 0.4s ease; }
+        .carousel-item { flex: 0 0 28%; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); opacity: 0.6; transform: scale(0.85); filter: blur(1px); cursor: pointer; border-radius: 28px; overflow: hidden; background: rgba(17, 17, 24, 0.9); backdrop-filter: blur(6px); border: 1px solid rgba(255,77,109,0.2); }
+        .carousel-item.active { opacity: 1; transform: scale(1); filter: blur(0); box-shadow: 0 20px 35px -8px rgba(255,77,109,0.6); border-color: #ff4d6d; }
+        .carousel-item img { width: 100%; height: 320px; object-fit: cover; display: block; }
+        .carousel-item .caption { padding: 1rem; text-align: center; background: rgba(0,0,0,0.7); font-weight: 500; }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 12px; margin-top: 30px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; }
+        .dot.active { background: #ff4d6d; width: 24px; border-radius: 10px; }
+
+        /* 歌单区域 - 使用照片墙布局展示十首歌曲 */
+        .song-gallery-container {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 20px 0 60px;
+        }
+        .song-gallery-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 2rem;
+        }
+        .song-photo-card {
+            flex: 0 0 calc(25% - 1.5rem);
+            min-width: 260px;
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(255,77,109,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .song-photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ff4d6d;
+            box-shadow: 0 25px 40px rgba(255,77,109,0.4);
+        }
+        .song-photo-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .song-photo-card:hover .song-photo-img {
+            transform: scale(1.05);
+        }
+        .song-photo-info {
+            padding: 1rem;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        .song-photo-number {
+            font-size: 0.8rem;
+            color: #ff9f4a;
+            letter-spacing: 1px;
+        }
+        .song-photo-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0.3rem 0;
+            color: #fff;
+        }
+        .play-badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 1.4rem;
+            color: #ff4d6d;
+        }
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 20;
+            transition: 0.2s;
+        }
+        .gallery-nav-btn:hover { background: #ff4d6d; transform: translateY(-50%) scale(1.05); }
+        .gallery-prev { left: 0px; }
+        .gallery-next { right: 0px; }
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .gallery-dot.active {
+            background: #ff4d6d;
+            width: 24px;
+            border-radius: 10px;
+        }
+        @media (max-width: 1000px) {
+            .song-photo-card { flex: 0 0 calc(33.33% - 1.4rem); }
+        }
+        @media (max-width: 700px) {
+            .song-photo-card { flex: 0 0 calc(50% - 1rem); }
+            .gallery-prev { left: 5px; }
+            .gallery-next { right: 5px; }
+        }
+        @media (max-width: 500px) {
+            .song-photo-card { flex: 0 0 calc(100% - 0rem); }
+        }
+
+        /* 全屏播放器模态框 */
+        .music-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(24px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .music-modal.active { visibility: visible; opacity: 1; }
+        .modal-content {
+            position: relative;
+            width: 94%;
+            max-width: 1300px;
+            height: 88vh;
+            background: rgba(10,10,20,0.7);
+            border-radius: 56px;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px rgba(255,77,109,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            filter: blur(14px) brightness(0.35);
+            z-index: 0;
+        }
+        .modal-inner {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(16px);
+            padding: 2rem;
+        }
+        .disc-cover {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background-size: cover;
+            box-shadow: 0 0 0 10px rgba(255,77,109,0.4);
+            animation: rotateDisc 20s linear infinite;
+            animation-play-state: paused;
+        }
+        .disc-cover.playing { animation-play-state: running; }
+        @keyframes rotateDisc {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .modal-song-name { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg,#fff,#ffb347); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 1rem 0; }
+        .progress-bar { width: 70%; height: 5px; background: rgba(255,255,255,0.3); border-radius: 5px; cursor: pointer; margin: 1rem 0; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg,#ff4d6d,#ffb347); border-radius: 5px; }
+        .time-info { width: 70%; display: flex; justify-content: space-between; margin-top: 0.3rem; font-size: 0.85rem; }
+        .controls { display: flex; gap: 2rem; margin: 1rem 0; }
+        .ctrl-btn { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 1px solid #ff4d6d; }
+        .ctrl-btn:hover { background: #ff4d6d; transform: scale(1.05); }
+        .close-modal { position: absolute; top: 20px; right: 30px; font-size: 2rem; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
+        @media (max-width: 700px) {
+            .disc-cover { width: 180px; height: 180px; }
+            .modal-song-name { font-size: 1.5rem; }
+            .ctrl-btn { width: 48px; height: 48px; font-size: 1.3rem; }
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 1rem 0.5rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,77,109,0.5);
+            z-index: 101;
+        }
+        .play-btn { background: #ff4d6d; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .music-info { font-size: 0.85rem; color: #ffb347; }
+
+        .timeline { max-width: 900px; margin: 0 auto; }
+        .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .timeline-time { min-width: 100px; font-weight: 700; color: #ff4d6d; font-size: 1.2rem; }
+        .timeline-desc { background: rgba(20,20,35,0.7); backdrop-filter: blur(4px); padding: 1rem 1.5rem; border-radius: 20px; width: 100%; }
+
+        .messages-container { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
+        .message-card {
+            flex: 1 1 280px;
+            background: rgba(17, 17, 24, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,77,109,0.4);
+            position: relative;
+        }
+        .delete-msg {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 30px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            color: #ff8888;
+            cursor: pointer;
+        }
+        .message-form { max-width: 600px; margin: 2rem auto; background: rgba(10,10,20,0.7); backdrop-filter: blur(8px); padding: 1.5rem; border-radius: 28px; border: 1px solid rgba(255,77,109,0.4); }
+        .message-form input, .message-form textarea { width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,77,109,0.5); border-radius: 40px; padding: 0.8rem 1rem; margin-bottom: 1rem; color: white; font-family: inherit; outline: none; }
+        .message-form button { background: linear-gradient(90deg, #ff4d6d, #ff9f4a); border: none; padding: 0.6rem 1.5rem; border-radius: 40px; font-weight: bold; cursor: pointer; }
+
+        .share-buttons { text-align: center; margin: 2rem 0; }
+        .share-buttons a { display: inline-block; margin: 0 1rem; color: #fff; font-size: 1.8rem; transition: 0.2s; }
+        footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,77,109,0.3); background: rgba(3,3,10,0.7); backdrop-filter: blur(8px); }
+        .go-top {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: #ff4d6d;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .go-top.visible { opacity: 1; }
+        .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.7s ease; }
+        .fade-up.revealed { opacity: 1; transform: translateY(0); }
+        .wish-star { margin-left: 0.8rem; cursor: pointer; color: #ffb347; transition: 0.2s; }
+        @media (max-width: 600px) {
+            .carousel-item { flex: 0 0 80%; }
+            .timeline-item { flex-direction: column; }
+            .music-player { bottom: 1rem; left: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="floating-container" id="floatingContainer"></div>
+<canvas id="starCanvas"></canvas>
+<canvas id="fireworksCanvas"></canvas>
+<img id="recordGif" src="back.gif" alt="唱片机" class="record-player" style="display: none;">
+<button class="lightup-btn" id="lightupBtn"><i class="fas fa-heart"></i> ✨ 点亮灯牌 ✨</button>
+<div class="wish-counter" id="wishCounter"><i class="fas fa-star"></i> 许愿星 <span id="wishCount">0</span></div>
+
+<nav class="navbar">
+    <div class="logo">✦ 纯妹妹·深圳 ✦</div>
+    <div class="nav-links">
+        <a href="#moments">瞬间</a><a href="#artists">纯妹妹</a><a href="#songlist">心动歌单</a><a href="#story">回忆</a><a href="#messages">留言</a>
+    </div>
+</nav>
+
+<section class="hero" id="hero">
+    <div class="hero-content fade-up">
+        <h1 class="neon-text">「 纯 妹 妹 深 圳 站 」</h1>
+        <p>2026 · 单依纯「纯妹妹」世界巡回演唱会 · 深圳收官夜 · 十首典藏</p>
+        <a href="#songlist" class="btn-glow">聆听纯色之声 <i class="fas fa-headphones"></i></a>
+        <div class="countdown" style="margin-top: 2rem;">
+            <i class="fas fa-calendar-alt"></i> <span id="countdownText"></span>
+        </div>
+    </div>
+</section>
+
+<section id="moments"><h2 class="section-title"><span>✨ 精彩瞬间 ✨</span></h2><div class="title-decoration"></div><div class="photo-grid fade-up" id="momentsGrid"></div></section>
+<section id="artists"><h2 class="section-title"><span>🎤 纯妹妹 · 舞台光影 🎤</span></h2><div class="title-decoration"></div><div class="carousel-container fade-up"><div class="carousel-track" id="carouselTrack"></div><button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button><button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button><div class="carousel-dots" id="carouselDots"></div></div></section>
+
+<!-- 歌单区域：使用十首歌曲照片墙布局 -->
+<section id="songlist">
+    <h2 class="section-title"><span>🎶 纯妹妹 · 心动歌单 🎶</span></h2>
+    <div class="title-decoration"></div>
+    <div class="song-gallery-container">
+        <div class="song-gallery-track" id="songGalleryTrack"></div>
+        <button class="gallery-nav-btn gallery-prev" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="gallery-nav-btn gallery-next" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="gallery-dots" id="galleryDots"></div>
+</section>
+
+<section id="story"><h2 class="section-title"><span>⏳ 时光隧道 · 深圳之夜 ⏳</span></h2><div class="title-decoration"></div><div class="timeline fade-up"><div class="timeline-item"><div class="timeline-time">19:30</div><div class="timeline-desc">✨ 深圳湾体育中心，灯光渐暗，万人大合唱《纯妹妹》暖场。</div></div><div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-desc">🎤 单依纯一袭白裙登场，《在夜里跳舞》拉开序幕，全场沸腾。</div></div><div class="timeline-item"><div class="timeline-time">21:15</div><div class="timeline-desc">💎 特别环节：钢琴弹唱《踮起脚尖爱》，全场手机闪光灯汇成星海。</div></div><div class="timeline-item"><div class="timeline-time">22:30</div><div class="timeline-desc">🤝 神秘嘉宾合唱《分身》，舞台烟花绽放，气氛达到顶峰。</div></div><div class="timeline-item"><div class="timeline-time">23:50</div><div class="timeline-desc">🏁 安可曲《给电影人的情书》，依依不舍，约定再会。</div></div></div></section>
+
+<section id="messages">
+    <h2 class="section-title"><span>💬 深圳记忆 · 留言墙 💬</span></h2><div class="title-decoration"></div>
+    <div class="message-form fade-up"><h3><i class="fas fa-pen-fancy"></i> 留下你的深圳回忆</h3>
+        <form id="messageForm"><input type="text" id="msgName" placeholder="你的昵称" required><textarea id="msgText" rows="3" placeholder="分享你的深圳记忆..." required></textarea><button type="submit" class="btn-glow" style="padding:0.6rem 1.5rem;">✨ 留下足迹 ✨</button></form>
+    </div>
+    <div class="messages-container" id="messageWall"></div>
+</section>
+
+<section><h2 class="section-title"><span>🙏 致谢 · 幕后星光 🙏</span></h2><div class="title-decoration"></div><div style="text-align: center; max-width: 800px; margin: 0 auto;"><p>感谢所有乐迷与工作人员，每一束光芒都因你们而闪耀。</p><div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;"><span><i class="fas fa-guitar"></i> 音乐总监：L. Chen</span><span><i class="fas fa-lightbulb"></i> 灯光团队：Stellar Visions</span><span><i class="fas fa-crown"></i> 主办：星云娱乐</span></div><div class="share-buttons"><a href="#" id="shareWechat" style="display: inline-block; margin: 0 1rem; color: #fff; font-size: 1.8rem; transition: 0.2s;"><i class="fab fa-weixin"></i></a><a href="#" id="shareQQ" style="display: inline-block; margin: 0 1rem; color: #fff; font-size: 1.8rem; transition: 0.2s;"><i class="fab fa-qq"></i></a></div></div></section>
+
+<div class="music-player"><div class="play-btn" id="playMusicBtn"><i class="fas fa-play"></i></div><div class="music-info"><i class="fas fa-headphones"></i> 还有什么更好的~</div></div>
+<audio id="bgMusic" loop preload="auto"><source src="music.m4a" type="audio/mp4"></audio>
+<a href="#" class="go-top" id="goTopBtn"><i class="fas fa-chevron-up"></i></a>
+
+<div class="lightbox" id="lightbox"><span class="lightbox-close">&times;</span><img class="lightbox-img" id="lightboxImg" alt="大图"></div>
+
+<!-- 全屏播放器模态框 -->
+<div class="music-modal" id="musicModal"><div class="modal-content"><div class="modal-bg" id="modalBg"></div><div class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></div><div class="modal-inner"><div class="disc-cover" id="discCover"></div><div class="modal-song-name" id="modalSongName">纯妹妹</div><div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div><div class="time-info"><span id="currentTime">0:00</span><span id="durationTime">0:00</span></div><div class="controls"><div class="ctrl-btn" id="prevSongBtn"><i class="fas fa-backward-step"></i></div><div class="ctrl-btn" id="playPauseModalBtn"><i class="fas fa-play"></i></div><div class="ctrl-btn" id="nextSongBtn"><i class="fas fa-forward-step"></i></div></div></div></div></div>
+
+<script>
+    // ========== 十首歌曲数据 (来自test) ==========
+    const songList = ["还有什么更好的","纯妹妹","向日葵朝着夜","假如我们还爱着","我管不住我自己","有趣","我表示理解","还你茉莉","多少的光阴","珠玉"];
+    let currentSongIndex = 0;
+    let audioElement = null;
+    let isPlaying = false;
+    let isSeeking = false;
+
+    // 统一播放器核心
+    function loadAndPlay(index, autoPlay = true) {
+        if (audioElement) { 
+            audioElement.pause(); 
+            audioElement.removeEventListener("timeupdate", updateProgressAll); 
+            audioElement.removeEventListener("ended", onSongEnd); 
+        }
+        const songNumber = index + 1;
+        const audioUrl = `sources/songs/${songNumber}.m4a`;
+        const bgUrl = `sources/songs/${songNumber}.jpg`;
+        audioElement = new Audio(audioUrl);
+        audioElement.addEventListener("timeupdate", updateProgressAll);
+        audioElement.addEventListener("ended", onSongEnd);
+        audioElement.load();
+        if (autoPlay) {
+            audioElement.play().then(() => { isPlaying = true; updatePlayButtons(true); }).catch(() => { isPlaying = false; updatePlayButtons(false); });
+        } else { isPlaying = false; updatePlayButtons(false); }
+        document.getElementById("modalSongName").innerText = songList[index];
+        document.getElementById("discCover").style.backgroundImage = `url(${bgUrl})`;
+        document.getElementById("modalBg").style.backgroundImage = `url(${bgUrl})`;
+        if (document.getElementById("discCover")) document.getElementById("discCover").style.backgroundSize = "cover";
+        currentSongIndex = index;
+    }
+    
+    function updateProgressAll() { 
+        if (!audioElement || isSeeking) return; 
+        let cur = audioElement.currentTime, dur = audioElement.duration; 
+        if (!isNaN(dur) && dur > 0) { 
+            let percent = (cur / dur) * 100; 
+            document.getElementById("progressFill").style.width = percent + "%"; 
+            document.getElementById("currentTime").innerText = formatTime(cur); 
+            document.getElementById("durationTime").innerText = formatTime(dur); 
+        } 
+    }
+    
+    function onSongEnd() { nextSong(); }
+    
+    function formatTime(sec) { 
+        if (isNaN(sec)) return "0:00"; 
+        let m = Math.floor(sec / 60), s = Math.floor(sec % 60); 
+        return `${m}:${s < 10 ? '0' : ''}${s}`; 
+    }
+    
+    function togglePlayPauseGlobal() { 
+        if (!audioElement) return; 
+        if (isPlaying) { 
+            audioElement.pause(); 
+            isPlaying = false; 
+        } else { 
+            audioElement.play().then(() => { isPlaying = true; }).catch(()=>{}); 
+        } 
+        updatePlayButtons(isPlaying); 
+    }
+    
+    function updatePlayButtons(playing) { 
+        let playBtn = document.getElementById("playPauseModalBtn"); 
+        if (playBtn) playBtn.innerHTML = playing ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>'; 
+        let disc = document.getElementById("discCover"); 
+        if (disc) { 
+            if (playing) disc.classList.add("playing"); 
+            else disc.classList.remove("playing"); 
+        } 
+    }
+    
+    function nextSong() { 
+        let newIdx = (currentSongIndex + 1) % songList.length; 
+        currentSongIndex = newIdx; 
+        loadAndPlay(currentSongIndex, true); 
+    }
+    
+    function prevSong() { 
+        let newIdx = (currentSongIndex - 1 + songList.length) % songList.length; 
+        currentSongIndex = newIdx; 
+        loadAndPlay(currentSongIndex, true); 
+    }
+
+    // 渲染歌曲照片墙（可翻页）
+    let galleryIndex = 0;
+    let itemsPerPage = 4;
+    
+    function updateGallery() {
+        const track = document.getElementById("songGalleryTrack");
+        const start = galleryIndex * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, songList.length);
+        track.innerHTML = "";
+        for (let i = start; i < end; i++) {
+            const song = songList[i];
+            const num = i + 1;
+            const imgUrl = `sources/songs/${num}.jpg`;
+            const card = document.createElement("div");
+            card.className = "song-photo-card";
+            card.innerHTML = `
+                <img class="song-photo-img" src="${imgUrl}" alt="${song}" onerror="this.src='https://picsum.photos/300/300?random=${num}'">
+                <div class="song-photo-info">
+                    <div class="song-photo-number">${String(num).padStart(2,'0')}</div>
+                    <div class="song-photo-name">${song}</div>
+                    <div class="play-badge"><i class="fas fa-circle-play"></i></div>
+                </div>
+            `;
+            card.addEventListener("click", () => { loadAndPlay(i, true); document.getElementById("musicModal").classList.add("active"); });
+            track.appendChild(card);
+        }
+        updateGalleryDots();
+    }
+    
+    function updateGalleryDots() {
+        const totalPages = Math.ceil(songList.length / itemsPerPage);
+        const dotsContainer = document.getElementById("galleryDots");
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement("div");
+            dot.className = "gallery-dot" + (i === galleryIndex ? " active" : "");
+            dot.addEventListener("click", () => { galleryIndex = i; updateGallery(); });
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    function nextGallery() { 
+        let max = Math.ceil(songList.length / itemsPerPage) - 1; 
+        if (galleryIndex < max) { galleryIndex++; updateGallery(); } 
+    }
+    
+    function prevGallery() { 
+        if (galleryIndex > 0) { galleryIndex--; updateGallery(); } 
+    }
+    
+    document.getElementById("galleryPrev").addEventListener("click", prevGallery);
+    document.getElementById("galleryNext").addEventListener("click", nextGallery);
+    
+    function handleResize() { 
+        if (window.innerWidth < 700) itemsPerPage = 2; 
+        else if (window.innerWidth < 1000) itemsPerPage = 3; 
+        else itemsPerPage = 4; 
+        updateGallery(); 
+    }
+    
+    window.addEventListener("resize", handleResize);
+    if (window.innerWidth < 700) itemsPerPage = 2; 
+    else if (window.innerWidth < 1000) itemsPerPage = 3; 
+    else itemsPerPage = 4;
+    updateGallery();
+
+    // 绑定全局控件
+    document.getElementById("playPauseModalBtn").addEventListener("click", togglePlayPauseGlobal);
+    document.getElementById("prevSongBtn").addEventListener("click", prevSong);
+    document.getElementById("nextSongBtn").addEventListener("click", nextSong);
+
+    // 关闭播放器函数（停止播放）
+function closeModal() { 
+    const modal = document.getElementById("musicModal");
+    if (modal) modal.classList.remove("active");
+    
+    // 停止播放
+    if (audioElement) { 
+        audioElement.pause(); 
+        isPlaying = false;
+        
+        // 更新播放按钮图标
+        const playBtn = document.getElementById("playPauseModalBtn");
+        if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        
+        // 停止唱片旋转
+        const disc = document.getElementById("discCover");
+        if (disc) disc.classList.remove("playing");
+    }
+}
+
+// 绑定关闭事件
+document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+document.getElementById("musicModal").addEventListener("click", (e) => { 
+    if (e.target === document.getElementById("musicModal")) closeModal(); 
+});
+    const progressBarDiv = document.getElementById("progressBar");
+    if (progressBarDiv) {
+        progressBarDiv.addEventListener("mousedown", (e) => { 
+            if (!audioElement) return; 
+            isSeeking = true; 
+            const rect = progressBarDiv.getBoundingClientRect(); 
+            let percent = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width)); 
+            audioElement.currentTime = percent * audioElement.duration; 
+            updateProgressAll(); 
+            isSeeking = false; 
+        });
+    }
+
+    loadAndPlay(0, false);
+
+    // ========== 倒计时 ==========
+    const concertDate = new Date(2026, 2, 29);
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diffMs = concertDate.getTime() - today.getTime();
+    const countdownSpan = document.getElementById('countdownText');
+    if (diffMs > 0) {
+        const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+        countdownSpan.innerHTML = `✨ 距离深圳之夜还有 <span style="color:#ff4d6d;font-size:1.5rem;">${daysLeft}</span> 天 ✨`;
+    } else {
+        const daysPassed = Math.floor((today.getTime() - concertDate.getTime()) / (1000 * 60 * 60 * 24));
+        countdownSpan.innerHTML = `🎤 深圳之夜已过去 <span style="color:#ff4d6d;font-size:1.5rem;">${daysPassed}</span> 天，星光依旧✨`;
+    }
+
+    // ========== 留言墙 ==========
+    let messagesData = [];
+    const STORAGE_KEY = 'shenzhen_concert_messages';
+    const defaultMessages = [
+        { id: Date.now()+1, name: "@深圳小纯迷", msg: "《在夜里跳舞》一出来，眼泪就止不住了，依纯真的太会唱了！" },
+        { id: Date.now()+2, name: "@南山听纯", msg: "深圳场的音响效果绝了，和依纯的声音完美融合。" },
+        { id: Date.now()+3, name: "@纯纯后援会", msg: "安可时全场大合唱《永不失联的爱》，这是属于我们的夜晚。" }
+    ];
+    function loadMessages() { const stored = localStorage.getItem(STORAGE_KEY); if (stored) messagesData = JSON.parse(stored); else messagesData = [...defaultMessages]; }
+    function saveMessages() { localStorage.setItem(STORAGE_KEY, JSON.stringify(messagesData)); }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+    function renderMessages() {
+        const wall = document.getElementById('messageWall');
+        if (!wall) return;
+        wall.innerHTML = '';
+        messagesData.forEach(msg => {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            card.innerHTML = `<i class="fas fa-quote-left"></i><p style="margin: 0.8rem 0;">“${escapeHtml(msg.msg)}”</p><div style="margin-top: 1rem; font-weight: 600; color: #ffb347; display: flex; align-items: center; justify-content: space-between;"><span>— ${escapeHtml(msg.name)}</span><div style="display:flex; gap:12px;"><i class="fas fa-star wish-star" data-id="${msg.id}" style="cursor:pointer;"></i><i class="fas fa-trash-alt delete-msg" data-id="${msg.id}" style="cursor:pointer;"></i></div></div>`;
+            wall.appendChild(card);
+        });
+        document.querySelectorAll('.wish-star').forEach(star => { star.addEventListener('click', (e) => { e.stopPropagation(); const rect = star.getBoundingClientRect(); addWish(rect.left + rect.width/2, rect.top + rect.height/2); }); });
+        document.querySelectorAll('.delete-msg').forEach(btn => { btn.addEventListener('click', (e) => { e.stopPropagation(); const id = parseInt(btn.getAttribute('data-id')); messagesData = messagesData.filter(m => m.id !== id); saveMessages(); renderMessages(); }); });
+    }
+    function addNewMessage(name, text) { messagesData.unshift({ id: Date.now(), name: '@' + name.trim(), msg: text.trim() }); saveMessages(); renderMessages(); }
+    loadMessages(); renderMessages();
+    const messageForm = document.getElementById('messageForm');
+    if (messageForm) {
+        messageForm.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('msgName').value.trim(); const text = document.getElementById('msgText').value.trim(); if (!name || !text) return; addNewMessage(name, text); e.target.reset(); document.getElementById('messages').scrollIntoView({ behavior: 'smooth' }); });
+    }
+
+    // 精彩瞬间图片加载
+    const momentsGrid = document.getElementById("momentsGrid");
+    function loadMomentsImages() { 
+        let idx = 1, loaded = false; 
+        function tryNext() { 
+            const url = `sources/moments/M (${idx}).jpg`; 
+            const img = new Image(); 
+            img.onload = () => { 
+                const card = document.createElement("div"); 
+                card.className = "photo-card"; 
+                card.innerHTML = `<img src="${url}" loading="lazy"><div class="caption">深圳 · 光影第${idx}幕</div>`; 
+                momentsGrid.appendChild(card); 
+                idx++; 
+                tryNext(); 
+                loaded = true; 
+            }; 
+            img.onerror = () => { if (!loaded && idx === 1 && momentsGrid) momentsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">📁 未找到现场照片</div>`; }; 
+            img.src = url; 
+        } 
+        tryNext(); 
+    }
+    if (momentsGrid) loadMomentsImages();
+
+    // 歌手轮播
+    let allImages = [], currentIdx = 0, totalCount = 0, track, prevBtn, nextBtn, dotsContainer, isTransitioning = false, autoTimer;
+    track = document.getElementById('carouselTrack'); 
+    prevBtn = document.getElementById('prevBtn'); 
+    nextBtn = document.getElementById('nextBtn'); 
+    dotsContainer = document.getElementById('carouselDots');
+    
+    function loadImageList(callback) { let idx=1, images=[]; function tryNext() { const url=`sources/P (${idx}).jpg`; const img=new Image(); img.onload=()=>{ images.push({url:url,caption:`纯妹妹 · 相片${idx}`}); idx++; tryNext(); }; img.onerror=()=>callback(images); img.src=url; } tryNext(); }
+    
+    function buildCarousel(images) { 
+        if(!images.length || !track){ 
+            if(track) track.innerHTML=`<div style="text-align:center;padding:3rem;">📁 未找到歌手照片</div>`; 
+            if(prevBtn) prevBtn.style.display='none'; 
+            if(nextBtn) nextBtn.style.display='none'; 
+            return; 
+        } 
+        totalCount=images.length; 
+        allImages=images; 
+        renderCurrentGroup(); 
+        updateCarouselDots(); 
+        startAutoSlide(); 
+    }
+    
+    function renderCurrentGroup() { 
+        if(totalCount===0 || !track) return; 
+        const prevIdx=(currentIdx-1+totalCount)%totalCount, nextIdx=(currentIdx+1)%totalCount; 
+        const items=[{img:allImages[prevIdx],type:'side',idx:prevIdx},{img:allImages[currentIdx],type:'center',idx:currentIdx},{img:allImages[nextIdx],type:'side',idx:nextIdx}]; 
+        track.innerHTML=''; 
+        items.forEach(item=>{ 
+            const card=document.createElement('div'); 
+            card.className='carousel-item'; 
+            if(item.type==='center') card.classList.add('active'); 
+            card.innerHTML=`<img src="${item.img.url}" alt="纯妹妹 ${item.idx+1}" loading="lazy"><div class="caption">${item.img.caption}</div>`; 
+            card.addEventListener('click',()=>{ if(item.type!=='center'){ if(item.idx<currentIdx) prevSlide(); else if(item.idx>currentIdx) nextSlide(); } }); 
+            track.appendChild(card); 
+        }); 
+    }
+    
+    function updateCarouselDots(){ 
+        if(!dotsContainer) return;
+        dotsContainer.innerHTML=''; 
+        for(let i=0;i<totalCount;i++){ 
+            const dot=document.createElement('div'); 
+            dot.className='dot'; 
+            if(i===currentIdx) dot.classList.add('active'); 
+            dot.addEventListener('click',()=>{ if(isTransitioning) return; if(i===currentIdx) return; currentIdx=i; renderCurrentGroup(); updateCarouselDots(); }); 
+            dotsContainer.appendChild(dot); 
+        } 
+    }
+    
+    function nextSlide(){ if(isTransitioning||totalCount===0) return; isTransitioning=true; currentIdx=(currentIdx+1)%totalCount; renderCurrentGroup(); updateCarouselDots(); setTimeout(()=>{ isTransitioning=false; },450); }
+    function prevSlide(){ if(isTransitioning||totalCount===0) return; isTransitioning=true; currentIdx=(currentIdx-1+totalCount)%totalCount; renderCurrentGroup(); updateCarouselDots(); setTimeout(()=>{ isTransitioning=false; },450); }
+    if(prevBtn) prevBtn.addEventListener('click',(e)=>{e.preventDefault(); prevSlide();});
+    if(nextBtn) nextBtn.addEventListener('click',(e)=>{e.preventDefault(); nextSlide();});
+    function startAutoSlide(){ if(autoTimer) clearInterval(autoTimer); autoTimer=setInterval(()=>{ if(!isTransitioning) nextSlide(); },4000); }
+    function stopAutoSlide(){ if(autoTimer) clearInterval(autoTimer); autoTimer=null; }
+    const carouselContainer = document.querySelector('.carousel-container'); 
+    if(carouselContainer){ carouselContainer.addEventListener('mouseenter', stopAutoSlide); carouselContainer.addEventListener('mouseleave', startAutoSlide); }
+    loadImageList((images)=>buildCarousel(images));
+
+    // 背景音乐播放器
+    const audioBg = document.getElementById('bgMusic'); 
+    const playBtnBg = document.getElementById('playMusicBtn'); 
+    const recordGif = document.getElementById('recordGif');
+    let isBgPlaying = false;
+    if (audioBg && playBtnBg) {
+        audioBg.preload='auto'; 
+        audioBg.load();
+        function toggleBgPlay(){ 
+            if(isBgPlaying){ 
+                audioBg.pause(); 
+                playBtnBg.innerHTML='<i class="fas fa-play"></i>'; 
+                isBgPlaying=false; 
+                if(recordGif) recordGif.style.display='none'; 
+            }else{ 
+                audioBg.play().then(()=>{ 
+                    playBtnBg.innerHTML='<i class="fas fa-pause"></i>'; 
+                    isBgPlaying=true; 
+                    if(recordGif) recordGif.style.display='block'; 
+                }).catch(()=>{}); 
+            } 
+        }
+        playBtnBg.addEventListener('click',toggleBgPlay);
+    }
+
+    // 滚动动画
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('revealed'); observer.unobserve(entry.target); } }); },{threshold:0.15});
+    fadeElements.forEach(el=>observer.observe(el));
+    
+    const goTopBtn = document.getElementById('goTopBtn');
+    window.addEventListener('scroll',()=>{ if(goTopBtn) goTopBtn.classList.toggle('visible',window.scrollY>600); });
+    if(goTopBtn) goTopBtn.addEventListener('click',(e)=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+    
+    document.querySelectorAll('.nav-links a, .hero .btn-glow').forEach(anchor=>{ anchor.addEventListener('click',function(e){ if(this.getAttribute('href')&&this.getAttribute('href').startsWith('#')){ e.preventDefault(); const target=document.getElementById(this.getAttribute('href').substring(1)); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); } }); });
+
+    // 烟花特效
+    const fireworksCanvas = document.getElementById('fireworksCanvas'); 
+    if(fireworksCanvas){
+        const fireworksCtx = fireworksCanvas.getContext('2d'); 
+        let fireworks=[], fireParticles=[];
+        function resizeFireworksCanvas(){ fireworksCanvas.width=window.innerWidth; fireworksCanvas.height=window.innerHeight; }
+        window.addEventListener('resize',resizeFireworksCanvas); resizeFireworksCanvas();
+        class Firework { constructor(x,y,targetX,targetY){ this.x=x; this.y=y; this.targetX=targetX; this.targetY=targetY; this.radius=2; this.color=`hsl(${Math.random()*360},100%,60%)`; this.speedX=(targetX-x)/30; this.speedY=(targetY-y)/30; this.alive=true; this.age=0; this.maxAge=40; } update(){ this.x+=this.speedX; this.y+=this.speedY; this.age++; if(this.age>=this.maxAge||(Math.abs(this.x-this.targetX)<5&&Math.abs(this.y-this.targetY)<5)){ this.alive=false; for(let i=0;i<60;i++){ const angle=Math.random()*Math.PI*2; const speed=Math.random()*3+1; const vx=Math.cos(angle)*speed, vy=Math.sin(angle)*speed; fireParticles.push(new FireParticle(this.targetX,this.targetY,vx,vy)); } } } draw(ctx){ ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); } }
+        class FireParticle { constructor(x,y,vx,vy){ this.x=x; this.y=y; this.vx=vx; this.vy=vy; this.size=Math.random()*3+1; this.color=`hsl(${Math.random()*360},100%,60%)`; this.life=1; this.decay=0.02; } update(){ this.x+=this.vx; this.y+=this.vy; this.vy+=0.1; this.life-=this.decay; return this.life>0; } draw(ctx){ ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=this.color; ctx.globalAlpha=this.life; ctx.fill(); ctx.globalAlpha=1; } }
+        function updateFireworks(){ for(let i=fireworks.length-1;i>=0;i--){ fireworks[i].update(); if(!fireworks[i].alive) fireworks.splice(i,1); } for(let i=fireParticles.length-1;i>=0;i--){ if(!fireParticles[i].update()) fireParticles.splice(i,1); } }
+        function drawFireworks(){ fireworksCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height); fireworks.forEach(f=>f.draw(fireworksCtx)); fireParticles.forEach(p=>p.draw(fireworksCtx)); }
+        function animateFireworks(){ updateFireworks(); drawFireworks(); requestAnimationFrame(animateFireworks); } animateFireworks();
+        function createFirework(x,y){ fireworks.push(new Firework(x,y,x,y-280)); }
+        document.body.addEventListener('click',(e)=>{ if(e.target.closest('.music-modal')||e.target.closest('.song-photo-card')||e.target.closest('.music-player')||e.target.closest('.navbar')||e.target.closest('.go-top')||e.target.closest('.lightup-btn')||e.target.closest('.wish-counter')||e.target.closest('.delete-msg')||e.target.closest('.wish-star')||e.target.closest('.carousel-btn')||e.target.closest('.gallery-nav-btn')) return; createFirework(e.clientX,e.clientY); });
+    }
+
+    // 点亮灯牌
+    const lightupBtnDom = document.getElementById('lightupBtn');
+    function createLightupCard(x,y){ const card=document.createElement('div'); const msgs=['✨ 纯妹妹 ✨','💖 深圳我爱你 💖','🎤 依纯 forever 🎤']; const randomMsg=msgs[Math.floor(Math.random()*msgs.length)]; card.innerHTML=`<div style="background: linear-gradient(135deg, #ff4d6d, #ffb347); padding: 0.5rem 1rem; border-radius: 40px; color: white; font-weight: bold; box-shadow: 0 0 15px rgba(255,77,109,0.6); white-space: nowrap;"><i class="fas fa-heart"></i> ${randomMsg}</div>`; card.style.position='fixed'; card.style.left=x+'px'; card.style.top=y+'px'; card.style.zIndex='1000'; card.style.pointerEvents='none'; card.style.transition='all 2s ease-out'; document.body.appendChild(card); setTimeout(()=>{ card.style.transform='translateY(-200px)'; card.style.opacity='0'; },50); setTimeout(()=>card.remove(),2000); }
+    if(lightupBtnDom){
+        lightupBtnDom.addEventListener('click',(e)=>{ e.stopPropagation(); for(let i=0;i<6;i++){ const x=Math.random()*(window.innerWidth-100)+50; const y=Math.random()*(window.innerHeight-150)+80; createLightupCard(x,y); } const rect=lightupBtnDom.getBoundingClientRect(); createLightupCard(rect.left+rect.width/2,rect.top); });
+    }
+    
+    // 飘浮元素
+    const floatingContainerDom=document.getElementById('floatingContainer'); 
+    if(floatingContainerDom){
+        for(let i=0;i<40;i++){ const el=document.createElement('div'); el.className='floating-element'; const icons=['fa-star','fa-music']; const colors=['#ffb347','#ff4d6d','#ff66cc']; el.innerHTML=`<i class="fas ${icons[i%2]}" style="color:${colors[i%3]}"></i>`; el.style.fontSize=Math.random()*24+12+'px'; el.style.left=Math.random()*100+'%'; el.style.animationDuration=Math.random()*15+10+'s'; el.style.animationDelay=Math.random()*15+'s'; floatingContainerDom.appendChild(el); }
+    }
+
+    // 许愿星
+    let wishCount = 0; 
+    const wishCountSpan = document.getElementById('wishCount');
+    if(wishCountSpan) wishCountSpan.innerText = wishCount;
+    function createWishStar(x,y){ const star=document.createElement('div'); star.innerHTML='<i class="fas fa-star" style="color:#ffcc33; text-shadow:0 0 5px gold;"></i>'; star.style.position='fixed'; star.style.left=x+'px'; star.style.top=y+'px'; star.style.fontSize='24px'; star.style.zIndex='1000'; star.style.pointerEvents='none'; star.style.transition='all 1s ease-out'; document.body.appendChild(star); setTimeout(()=>{ star.style.transform='translateY(-150px) rotate(30deg)'; star.style.opacity='0'; },10); setTimeout(()=>star.remove(),1000); }
+    function addWish(x,y){ wishCount++; if(wishCountSpan) wishCountSpan.innerText = wishCount; createWishStar(x,y); }
+    document.body.addEventListener('click',(e)=>{ if(e.target.closest('.music-modal')||e.target.closest('.song-photo-card')||e.target.closest('.music-player')||e.target.closest('.navbar')||e.target.closest('.go-top')||e.target.closest('.lightup-btn')||e.target.closest('.carousel-btn')||e.target.closest('.message-form')||e.target.closest('.share-buttons')||e.target.closest('a')||e.target.closest('button')||e.target.closest('.delete-msg')||e.target.closest('.wish-star')||e.target.closest('.gallery-nav-btn')) return; addWish(e.clientX, e.clientY); });
+
+   // 鼠标粒子特效（柔和粉彩马卡龙色系）
+const starCanvasDom = document.getElementById('starCanvas'); 
+if(starCanvasDom){
+    const starCtxDom = starCanvasDom.getContext('2d'); 
+    let sw = window.innerWidth, sh = window.innerHeight; 
+    let starParticles = []; 
+    let mouseX = sw/2, mouseY = sh/2; 
+    
+    function resizeStarCanvas() { 
+        sw = window.innerWidth; 
+        sh = window.innerHeight; 
+        starCanvasDom.width = sw; 
+        starCanvasDom.height = sh; 
+    }
+    window.addEventListener('resize', resizeStarCanvas); 
+    resizeStarCanvas();
+    
+    // 柔和粉彩色系
+    const pastelColors = ['#FFB7B2', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF', '#C0F2E8', '#FFD1DC'];
+    
+    function createStarParticle(x, y) { 
+        const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+        return { 
+            x: x, 
+            y: y, 
+            size: Math.random() * 6 + 3, 
+            color: color, 
+            life: 1.0, 
+            speedX: (Math.random() - 0.5) * 2.5, 
+            speedY: (Math.random() - 0.5) * 2 - 1.2
+        }; 
+    }
+    
+    function updateStarParticles() { 
+        for (let i = starParticles.length-1; i >= 0; i--) { 
+            const p = starParticles[i]; 
+            p.x += p.speedX; 
+            p.y += p.speedY; 
+            p.life -= 0.02; 
+            if (p.life <= 0 || p.x < 0 || p.x > sw || p.y < 0 || p.y > sh) { 
+                starParticles.splice(i,1); 
+            } 
+        } 
+        
+        // 鼠标静止时偶尔产生粒子
+        if (Math.random() < 0.3) { 
+            for (let i = 0; i < 2; i++) { 
+                starParticles.push(createStarParticle(
+                    mouseX + (Math.random() - 0.5) * 50,
+                    mouseY + (Math.random() - 0.5) * 50
+                )); 
+            } 
+        } 
+    }
+    
+    function drawStarParticles() { 
+        starCtxDom.clearRect(0, 0, sw, sh); 
+        for (const p of starParticles) { 
+            starCtxDom.beginPath(); 
+            starCtxDom.arc(p.x, p.y, p.size, 0, Math.PI * 2); 
+            starCtxDom.fillStyle = p.color; 
+            starCtxDom.fill(); 
+            // 添加柔和发光效果
+            starCtxDom.shadowBlur = 12; 
+            starCtxDom.shadowColor = p.color; 
+        } 
+        starCtxDom.shadowBlur = 0; 
+    }
+    
+    function animateStars() { 
+        updateStarParticles(); 
+        drawStarParticles(); 
+        requestAnimationFrame(animateStars); 
+    } 
+    animateStars();
+    
+    // 鼠标移动时产生粒子
+    document.addEventListener('mousemove', (e) => { 
+        mouseX = e.clientX; 
+        mouseY = e.clientY; 
+        for (let i = 0; i < 3; i++) { 
+            starParticles.push(createStarParticle(
+                mouseX + (Math.random() - 0.5) * 20,
+                mouseY + (Math.random() - 0.5) * 20
+            )); 
+        } 
+    });
+    
+    // 触摸屏支持
+    document.addEventListener('touchmove', (e) => { 
+        const touch = e.touches[0]; 
+        mouseX = touch.clientX; 
+        mouseY = touch.clientY; 
+        for (let i = 0; i < 4; i++) { 
+            starParticles.push(createStarParticle(
+                mouseX + (Math.random() - 0.5) * 20,
+                mouseY + (Math.random() - 0.5) * 20
+            )); 
+        } 
+    });
+}
+
+    // 分享链接
+    // 微信和QQ分享
+const pageUrl = encodeURIComponent(window.location.href);
+const shareTitle = encodeURIComponent('单依纯「纯妹妹」深圳演唱会 | 永恒回响');
+const shareDesc = encodeURIComponent('2026单依纯深圳演唱会纪念页，重温纯色之声的美好夜晚✨');
+const shareImg = encodeURIComponent(window.location.origin + '/sources/songs/2.jpg'); // 使用歌曲封面作为分享图
+
+// QQ分享链接
+function shareToQQ() {
+    const url = `https://connect.qq.com/widget/shareqq/index.html?url=${window.location.href}&title=${shareTitle}&desc=${shareDesc}&summary=${shareDesc}&pics=${shareImg}`;
+    window.open(url, '_blank', 'width=800,height=600');
+}
+
+// 微信分享提示（微信需要扫码或使用SDK，这里显示提示）
+function shareToWechat() {
+    alert('请点击右上角菜单选择「分享给朋友」或「分享到朋友圈」💖\n\n或在微信中打开本页面直接分享~');
+}
+
+// 绑定分享事件
+const shareWechat = document.getElementById('shareWechat');
+const shareQQ = document.getElementById('shareQQ');
+if (shareWechat) shareWechat.addEventListener('click', shareToWechat);
+if (shareQQ) shareQQ.addEventListener('click', shareToQQ);
+    
+    // 图片lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    function openLightbox(src) { if(lightboxImg) lightboxImg.src = src; if(lightbox) lightbox.classList.add('active'); }
+    function closeLightbox() { if(lightbox) lightbox.classList.remove('active'); }
+    const lightboxClose = document.querySelector('.lightbox-close');
+    if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if(lightbox) lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+    document.body.addEventListener('click', (e) => {
+        let targetImg = e.target.closest('img');
+        if (targetImg && targetImg.id !== 'recordGif' && !targetImg.closest('.music-modal')) {
+            openLightbox(targetImg.src);
+            e.stopPropagation();
+        }
+    });
+</script>
+</body>
+</html>
