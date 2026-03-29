@@ -289,7 +289,7 @@
             100% { left: 200%; }
         }
 
-        /* 原有样式保持不变 */
+        /* 原有样式 */
         .floating-container {
             position: fixed;
             top: 0;
@@ -380,7 +380,6 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #1a1a2a; }
         ::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
-        .neon-text { text-shadow: 0 0 5px #ff4d6d, 0 0 10px #ff1e4d, 0 0 20px #b80c3a; }
 
         .navbar {
             position: fixed;
@@ -410,7 +409,7 @@
         .nav-links a:hover { color: #ff4d6d; text-shadow: 0 0 5px #ff4d6d; }
         @media (max-width: 768px) {
             .navbar { padding: 0.8rem 1.2rem; }
-            .nav-links { gap: 1.2rem; }
+            .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
             .logo { font-size: 1.2rem; }
             .nav-links a { font-size: 0.85rem; }
         }
@@ -471,7 +470,69 @@
             text-align: center;
             background: transparent;
         }
-        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 1rem; }
+        /* ========== 电视样式 ========== */
+        .tv {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1a1a2a;
+            border-radius: 28px;
+            padding: 14px 14px 48px 14px;
+            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(255,255,255,0.08);
+        }
+        .title-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4), 0 0 12px rgba(255,77,109,0.3);
+            object-fit: cover;    /* 填满屏幕，无黑边 */
+            background: #000;      /* 仅作为后备 */
+        }
+        .tv-stand {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 55%;
+            height: 12px;
+            background: #2a2a3a;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+        .tv-stand::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35%;
+            height: 10px;
+            background: #3a3a4a;
+            border-radius: 6px 6px 0 0;
+        }
+        /* 移动端调整 */
+        @media (max-width: 768px) {
+            .tv {
+                padding: 10px 10px 36px 10px;
+                border-radius: 20px;
+            }
+            .tv-stand {
+                width: 60%;
+                height: 8px;
+            }
+            .tv-stand::before {
+                top: -7px;
+                height: 7px;
+            }
+        }
+        /* 备用文字样式 */
+        .fallback-title {
+            display: none;
+        }
+
         .btn-glow {
             display: inline-block;
             background: linear-gradient(90deg, #ff4d6d, #ff9f4a);
@@ -1054,7 +1115,14 @@
 <div class="main-content" id="mainContent">
     <section class="hero" id="hero">
         <div class="hero-content">
-            <h1 class="neon-text">「 纯 妹 妹 深 圳 站 」</h1>
+            <!-- 电视机样式容器 -->
+            <div class="tv">
+                <video class="title-video" autoplay muted loop playsinline>
+                    <source src="title.mp4" type="video/mp4">
+                    <h1 class="neon-text fallback-title">「 纯 妹 妹 深 圳 站 」</h1>
+                </video>
+                <div class="tv-stand"></div>
+            </div>
             <p>2026 · 单依纯「纯妹妹」世界巡回演唱会 · 深圳收官夜 · 十首典藏</p>
             <a href="#songlist" class="btn-glow">聆听纯色之声 <i class="fas fa-headphones"></i></a>
             <div class="countdown" style="margin-top: 2rem;">
@@ -1833,83 +1901,26 @@
         }, 1500);
     }
 
-    // ========== 创意动画 - 流星（从右上角飞到左边中部，带拖尾） ==========
+    // ========== 创意动画 - 流星 ==========
     const cover = document.getElementById('fullscreenCover');
     const mainContent = document.getElementById('mainContent');
     const enterBtn = document.getElementById('enterBtn');
     const modules = document.querySelectorAll('.section-module');
 
-    // 流星主体和拖尾粒子
     function createShootingStar() {
         const star = document.createElement('div');
         star.className = 'shooting-star';
         document.body.appendChild(star);
 
-        // 起点：右上角（屏幕外）
         const startX = window.innerWidth + 50;
         const startY = -50;
-        // 终点：左边中部（左1/4处，垂直居中）
         const endX = window.innerWidth * 0.25;
         const endY = window.innerHeight * 0.5;
 
-        // 动画总时长
-        const duration = 1200; // ms
+        const duration = 1200;
         const startTime = performance.now();
-
-        function animateStar(now) {
-            const elapsed = now - startTime;
-            let t = Math.min(1, elapsed / duration);
-            // 缓动曲线 ease-out
-            const easeOut = 1 - Math.pow(1 - t, 2);
-            const currentX = startX + (endX - startX) * easeOut;
-            const currentY = startY + (endY - startY) * easeOut;
-            star.style.left = currentX + 'px';
-            star.style.top = currentY + 'px';
-            star.style.transform = `rotate(${easeOut * 360}deg) scale(${0.8 + easeOut * 0.5})`;
-
-            if (t < 1) {
-                requestAnimationFrame(animateStar);
-            } else {
-                // 动画结束，炸裂
-                star.remove();
-                // 产生冲击波
-                const shock = document.createElement('div');
-                shock.className = 'shockwave';
-                shock.style.left = endX + 'px';
-                shock.style.top = endY + 'px';
-                document.body.appendChild(shock);
-                setTimeout(() => shock.remove(), 700);
-
-                // 炸裂小星星
-                for (let i = 0; i < 100; i++) {
-                    setTimeout(() => {
-                        const shard = document.createElement('div');
-                        shard.className = 'star-shard';
-                        const angle = Math.random() * Math.PI * 2;
-                        const distance = 120 + Math.random() * 280;
-                        shard.style.left = endX + 'px';
-                        shard.style.top = endY + 'px';
-                        shard.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
-                        shard.style.setProperty('--dy', Math.sin(angle) * distance - 80 + 'px');
-                        document.body.appendChild(shard);
-                        setTimeout(() => shard.remove(), 800);
-                    }, i * 8);
-                }
-
-                // 拉出模块
-                setTimeout(() => {
-                    const firstModule = document.querySelector('#moments');
-                    if (firstModule) firstModule.classList.add('revealed');
-                    const beam = document.createElement('div');
-                    beam.className = 'light-beam';
-                    document.body.appendChild(beam);
-                    setTimeout(() => beam.remove(), 800);
-                }, 300);
-            }
-        }
-
-        // 生成拖尾粒子（每帧位置记录）
         let lastX = startX, lastY = startY;
+
         function addTail(x, y) {
             const tail = document.createElement('div');
             tail.className = 'star-tail';
@@ -1919,13 +1930,12 @@
             setTimeout(() => tail.remove(), 600);
         }
 
-        function animateWithTail(now) {
+        function animate(now) {
             const elapsed = now - startTime;
             let t = Math.min(1, elapsed / duration);
             const easeOut = 1 - Math.pow(1 - t, 2);
             const currentX = startX + (endX - startX) * easeOut;
             const currentY = startY + (endY - startY) * easeOut;
-            // 每隔一小段时间添加拖尾
             if (Math.abs(currentX - lastX) > 8 || Math.abs(currentY - lastY) > 8) {
                 addTail(currentX, currentY);
                 lastX = currentX;
@@ -1936,16 +1946,16 @@
             star.style.transform = `rotate(${easeOut * 360}deg) scale(${0.8 + easeOut * 0.5})`;
 
             if (t < 1) {
-                requestAnimationFrame(animateWithTail);
+                requestAnimationFrame(animate);
             } else {
                 star.remove();
-                // 炸裂...
                 const shock = document.createElement('div');
                 shock.className = 'shockwave';
                 shock.style.left = endX + 'px';
                 shock.style.top = endY + 'px';
                 document.body.appendChild(shock);
                 setTimeout(() => shock.remove(), 700);
+
                 for (let i = 0; i < 100; i++) {
                     setTimeout(() => {
                         const shard = document.createElement('div');
@@ -1960,6 +1970,7 @@
                         setTimeout(() => shard.remove(), 800);
                     }, i * 8);
                 }
+
                 setTimeout(() => {
                     const firstModule = document.querySelector('#moments');
                     if (firstModule) firstModule.classList.add('revealed');
@@ -1971,10 +1982,9 @@
             }
         }
 
-        requestAnimationFrame(animateWithTail);
+        requestAnimationFrame(animate);
     }
 
-    // 音符飞入
     function createFlyingNotes() {
         const songSection = document.querySelector('#songlist');
         if (!songSection) return;
@@ -1993,7 +2003,6 @@
         }
     }
 
-    // 光柱
     function addLightBeam() {
         const beam = document.createElement('div');
         beam.className = 'light-beam';
@@ -2001,13 +2010,11 @@
         setTimeout(() => beam.remove(), 1000);
     }
 
-    // 启动动画序列
     function startCreativeAnimations() {
         createShootingStar();
         setTimeout(() => addLightBeam(), 600);
         setTimeout(() => createFlyingNotes(), 1200);
-        // 其他模块按顺序出现（不包含花瓣雨）
-        const modulesList = Array.from(modules).filter(m => m.id !== 'moments'); // moments 已经通过流星拉出
+        const modulesList = Array.from(modules).filter(m => m.id !== 'moments');
         modulesList.forEach((module, index) => {
             setTimeout(() => {
                 module.classList.add('revealed');
@@ -2050,7 +2057,7 @@
     window.addEventListener('beforeunload', saveMusicState);
     restoreMusicState();
 
-    console.log('✨ 创意动画已启动：流星从右上角飞到左边中部，拖尾对齐 ✨');
+    console.log('✨ 页面已加载，标题已替换为电视机样式，无黑边 ✨');
 </script>
 </body>
 </html>
