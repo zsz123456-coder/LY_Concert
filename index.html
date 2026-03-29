@@ -470,7 +470,7 @@
             text-align: center;
             background: transparent;
         }
-        /* ========== 电视样式 ========== */
+        /* 电视机样式 */
         .tv {
             display: inline-block;
             position: relative;
@@ -488,8 +488,8 @@
             display: block;
             border-radius: 16px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.4), 0 0 12px rgba(255,77,109,0.3);
-            object-fit: cover;    /* 填满屏幕，无黑边 */
-            background: #000;      /* 仅作为后备 */
+            object-fit: cover;
+            background: #000;
         }
         .tv-stand {
             position: absolute;
@@ -513,7 +513,6 @@
             background: #3a3a4a;
             border-radius: 6px 6px 0 0;
         }
-        /* 移动端调整 */
         @media (max-width: 768px) {
             .tv {
                 padding: 10px 10px 36px 10px;
@@ -528,7 +527,6 @@
                 height: 7px;
             }
         }
-        /* 备用文字样式 */
         .fallback-title {
             display: none;
         }
@@ -568,10 +566,43 @@
             backdrop-filter: blur(4px);
             transition: 0.25s ease;
             cursor: pointer;
+            position: relative;
         }
-        .photo-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.5s ease; }
-        .photo-card:hover img { transform: scale(1.03); }
-        .photo-card .caption { padding: 0.8rem; text-align: center; background: rgba(0,0,0,0.6); }
+        .photo-card img, .photo-card video {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .photo-card:hover img, .photo-card:hover video {
+            transform: scale(1.03);
+        }
+        .photo-card .caption {
+            padding: 0.8rem;
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+        }
+        /* 视频播放覆盖层 */
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            pointer-events: none;
+            z-index: 2;
+            transition: 0.2s;
+        }
+        .photo-card:hover .play-overlay {
+            transform: translate(-50%, -50%) scale(1.1);
+            color: #ffb347;
+        }
+        .clickable-video {
+            cursor: pointer;
+        }
 
         .carousel-container { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; overflow: hidden; padding: 40px 0 60px; }
         .carousel-track { display: flex; align-items: center; justify-content: center; gap: 1.5rem; transition: all 0.4s ease; }
@@ -824,16 +855,11 @@
             backdrop-filter: blur(8px);
             padding: 0.5rem 1rem 0.5rem 0.8rem;
             border-radius: 50px;
-            border: 1px solid rgba(255,77,109,0.5);
+            border: 1px solid rgba(255, 77, 109, 0.5);
             z-index: 101;
         }
         .play-btn { background: #ff4d6d; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .music-info { font-size: 0.85rem; color: #ffb347; }
-
-        .timeline { max-width: 900px; margin: 0 auto; }
-        .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
-        .timeline-time { min-width: 100px; font-weight: 700; color: #ff4d6d; font-size: 1.2rem; }
-        .timeline-desc { background: rgba(20,20,35,0.7); backdrop-filter: blur(4px); padding: 1rem 1.5rem; border-radius: 20px; width: 100%; }
 
         .messages-container { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
         .message-card {
@@ -883,7 +909,7 @@
         .wish-star { margin-left: 0.8rem; cursor: pointer; color: #ffb347; transition: 0.2s; }
         @media (max-width: 600px) {
             .carousel-item { flex: 0 0 80%; }
-            .timeline-item { flex-direction: column; }
+            .messages-container { gap: 1rem; }
             .music-player { bottom: 1rem; left: 1rem; }
         }
 
@@ -1107,7 +1133,7 @@
 <nav class="navbar">
     <div class="logo">✦ 纯妹妹·深圳 ✦</div>
     <div class="nav-links">
-        <a href="#moments">瞬间</a><a href="#artists">纯妹妹</a><a href="#songlist">心动歌单</a><a href="#story">回忆</a><a href="#messages">留言</a>
+        <a href="#moments">瞬间</a><a href="#artists">纯妹妹</a><a href="#songlist">心动歌单</a><a href="#story">我的最爱</a><a href="#messages">留言</a>
         <a href="#timeCapsule">时光胶囊</a><a href="#badgeWall">徽章</a>
     </div>
 </nav>
@@ -1154,16 +1180,21 @@
         <div class="gallery-dots" id="galleryDots"></div>
     </section>
 
+    <!-- 已替换：我最爱的瞬间 -->
     <section id="story" class="section-module">
-        <h2 class="section-title"><span>⏳ 时光隧道 · 深圳之夜 ⏳</span></h2>
+        <h2 class="section-title"><span>💖 我最爱的瞬间 💖</span></h2>
         <div class="title-decoration"></div>
-        <div class="timeline">
-            <div class="timeline-item"><div class="timeline-time">19:30</div><div class="timeline-desc">✨ 深圳湾体育中心，灯光渐暗，万人大合唱《纯妹妹》暖场。</div></div>
-            <div class="timeline-item"><div class="timeline-time">20:00</div><div class="timeline-desc">🎤 单依纯一袭白裙登场，《在夜里跳舞》拉开序幕，全场沸腾。</div></div>
-            <div class="timeline-item"><div class="timeline-time">21:15</div><div class="timeline-desc">💎 特别环节：钢琴弹唱《踮起脚尖爱》，全场手机闪光灯汇成星海。</div></div>
-            <div class="timeline-item"><div class="timeline-time">22:30</div><div class="timeline-desc">🤝 神秘嘉宾合唱《分身》，舞台烟花绽放，气氛达到顶峰。</div></div>
-            <div class="timeline-item"><div class="timeline-time">23:50</div><div class="timeline-desc">🏁 安可曲《给电影人的情书》，依依不舍，约定再会。</div></div>
+
+        <div class="message-form" style="max-width:700px;">
+            <h3><i class="fas fa-star"></i> 记录你最爱的时刻</h3>
+            <form id="favoriteForm">
+                <input type="text" id="favoriteTitle" placeholder="标题（例如：我最爱的歌）" required>
+                <textarea id="favoriteContent" rows="3" placeholder="写下你最爱的瞬间、最感动的歌、最难忘的画面..." required></textarea>
+                <button type="submit" class="btn-glow" style="padding:0.6rem 1.5rem;">💾 保存我的最爱</button>
+            </form>
         </div>
+
+        <div class="messages-container" id="favoriteList" style="margin-top:2rem;"></div>
     </section>
 
     <section id="messages" class="section-module">
@@ -1216,9 +1247,14 @@
     <section class="section-module">
         <h2 class="section-title"><span>🙏 致谢 · 幕后星光 🙏</span></h2>
         <div class="title-decoration"></div>
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;"><p>感谢所有乐迷与工作人员，每一束光芒都因你们而闪耀。</p><div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;"><span><i class="fas fa-guitar"></i> 音乐总监：L. Chen</span><span><i class="fas fa-lightbulb"></i> 灯光团队：Stellar Visions</span><span><i class="fas fa-crown"></i> 主办：星云娱乐</span></div><div class="share-buttons"><a href="#" id="shareWechat"><i class="fab fa-weixin"></i></a><a href="#" id="shareQQ"><i class="fab fa-qq"></i></a></div></div>
-    </section>
-</div>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p>感谢所有乐迷与工作人员，每一束光芒都因你们而闪耀。</p>
+            <div class="share-buttons">
+                <a href="#" id="shareWechat"><i class="fab fa-weixin"></i></a>
+                <a href="#" id="shareQQ"><i class="fab fa-qq"></i></a>
+            </div>
+        </div>
+        </div>
 
 <div class="music-player"><div class="play-btn" id="playMusicBtn"><i class="fas fa-play"></i></div><div class="music-info"><i class="fas fa-headphones"></i> 还有什么更好的~</div></div>
 <audio id="bgMusic" loop preload="metadata"><source src="music.m4a" type="audio/mp4"></audio>
@@ -1551,28 +1587,98 @@
         messageForm.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('msgName').value.trim(); const text = document.getElementById('msgText').value.trim(); if (!name || !text) return; addNewMessage(name, text); e.target.reset(); document.getElementById('messages').scrollIntoView({ behavior: 'smooth' }); });
     }
 
+    // ========== 精彩瞬间：图片 + 视频混合加载（视频默认不自动播放，点击后播放） ==========
     const momentsGrid = document.getElementById("momentsGrid");
-    function loadMomentsImages() { 
-        let idx = 1, loaded = false; 
-        function tryNext() { 
-            const url = `sources/moments/M (${idx}).jpg`; 
-            const img = new Image(); 
-            img.onload = () => { 
-                const card = document.createElement("div"); 
-                card.className = "photo-card"; 
-                card.innerHTML = `<img src="${url}" loading="lazy"><div class="caption">深圳 · 光影第${idx}幕</div>`; 
-                momentsGrid.appendChild(card); 
-                idx++; 
-                tryNext(); 
-                loaded = true; 
-            }; 
-            img.onerror = () => { if (!loaded && idx === 1 && momentsGrid) momentsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">📁 未找到现场照片</div>`; }; 
-            img.src = url; 
-        } 
-        tryNext(); 
-    }
-    if (momentsGrid) loadMomentsImages();
+    function loadMomentsMedia() {
+        let idx = 1;
+        let anyLoaded = false;
+        function tryNext() {
+            const imgUrl = `sources/moments/M (${idx}).jpg`;
+            const videoUrl = `sources/moments/M (${idx}).mp4`;
+            const img = new Image();
+            img.onload = () => {
+                // 图片存在，添加图片卡片
+                const card = document.createElement("div");
+                card.className = "photo-card";
+                card.innerHTML = `<img src="${imgUrl}" loading="lazy"><div class="caption">深圳 · 光影第${idx}幕</div>`;
+                momentsGrid.appendChild(card);
+                idx++;
+                tryNext();
+                anyLoaded = true;
+            };
+            img.onerror = () => {
+                // 图片不存在，尝试加载视频
+                const video = document.createElement('video');
+                video.preload = "metadata";
+                video.style.width = "100%";
+                video.style.height = "240px";
+                video.style.objectFit = "cover";
+                video.style.cursor = "pointer";
+                video.setAttribute('playsinline', '');
+                // 不添加 autoplay，也不添加 muted（如果需要声音可保留，但为了用户点击后播放声音，不强制静音）
+                // 可选：显示一个播放覆盖层
+                video.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (video.paused) {
+                        video.play();
+                        // 隐藏覆盖层（如果有）
+                        const overlay = video.parentElement?.querySelector('.play-overlay');
+                        if (overlay) overlay.style.display = 'none';
+                    } else {
+                        video.pause();
+                    }
+                });
+                video.onerror = () => {
+                    if (!anyLoaded && idx === 1) {
+                        momentsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">📁 未找到现场照片或视频</div>`;
+                    }
+                };
+                video.src = videoUrl;
+                video.load();
 
+                // 等待视频元数据加载，确认是否有效
+                video.addEventListener('loadedmetadata', () => {
+                    const card = document.createElement("div");
+                    card.className = "photo-card";
+                    card.style.position = "relative";
+                    const videoContainer = document.createElement('div');
+                    videoContainer.style.position = "relative";
+                    videoContainer.appendChild(video);
+                    const overlay = document.createElement('div');
+                    overlay.className = "play-overlay";
+                    overlay.innerHTML = '<i class="fas fa-play-circle"></i>';
+                    videoContainer.appendChild(overlay);
+                    // 视频播放时隐藏覆盖层
+                    video.addEventListener('play', () => {
+                        overlay.style.display = 'none';
+                    });
+                    video.addEventListener('pause', () => {
+                        if (video.paused && video.currentTime > 0) {
+                            overlay.style.display = 'flex';
+                        }
+                    });
+                    // 如果视频已经结束，重置时显示覆盖层
+                    video.addEventListener('ended', () => {
+                        overlay.style.display = 'flex';
+                    });
+                    card.appendChild(videoContainer);
+                    const caption = document.createElement('div');
+                    caption.className = "caption";
+                    caption.innerText = `深圳 · 视频第${idx}幕`;
+                    card.appendChild(caption);
+                    momentsGrid.appendChild(card);
+                    idx++;
+                    tryNext();
+                    anyLoaded = true;
+                });
+            };
+            img.src = imgUrl;
+        }
+        tryNext();
+    }
+    if (momentsGrid) loadMomentsMedia();
+
+    // 歌手轮播图（保持不变）
     let allImages = [], currentIdx = 0, totalCount = 0, track, prevBtn, nextBtn, dotsContainer, isTransitioning = false, autoTimer;
     track = document.getElementById('carouselTrack'); 
     prevBtn = document.getElementById('prevBtn'); 
@@ -1632,6 +1738,7 @@
     if(carouselContainer){ carouselContainer.addEventListener('mouseenter', stopAutoSlide); carouselContainer.addEventListener('mouseleave', startAutoSlide); }
     loadImageList((images)=>buildCarousel(images));
 
+    // 背景音乐
     const audioBg = document.getElementById('bgMusic'); 
     const playBtnBg = document.getElementById('playMusicBtn'); 
     const recordGif = document.getElementById('recordGif');
@@ -1656,6 +1763,7 @@
         playBtnBg.addEventListener('click',toggleBgPlay);
     }
 
+    // 滚动动画（fade-up 保留原有，不影响）
     const fadeElements = document.querySelectorAll('.fade-up');
     const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('revealed'); observer.unobserve(entry.target); } }); },{threshold:0.15});
     fadeElements.forEach(el=>observer.observe(el));
@@ -1666,6 +1774,7 @@
     
     document.querySelectorAll('.nav-links a, .hero .btn-glow').forEach(anchor=>{ anchor.addEventListener('click',function(e){ if(this.getAttribute('href')&&this.getAttribute('href').startsWith('#')){ e.preventDefault(); const target=document.getElementById(this.getAttribute('href').substring(1)); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); } }); });
 
+    // 烟花特效（保持不变）
     const fireworksCanvas = document.getElementById('fireworksCanvas'); 
     let fireworkCountGlobal = parseInt(localStorage.getItem('badge_firework') || '0');
     if(fireworksCanvas){
@@ -2057,7 +2166,56 @@
     window.addEventListener('beforeunload', saveMusicState);
     restoreMusicState();
 
-    console.log('✨ 页面已加载，标题已替换为电视机样式，无黑边 ✨');
+    // ========== 我最爱的瞬间 - 本地储存 ==========
+    const FAVORITE_KEY = 'my_favorite_moments';
+    function loadFavoriteMoments() { const data = localStorage.getItem(FAVORITE_KEY); return data ? JSON.parse(data) : []; }
+    function saveFavoriteMoments(list) { localStorage.setItem(FAVORITE_KEY, JSON.stringify(list)); }
+    function renderFavoriteMoments() {
+        const container = document.getElementById('favoriteList');
+        if (!container) return;
+        const list = loadFavoriteMoments();
+        container.innerHTML = '';
+        list.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            card.innerHTML = `
+                <h3 style="color:#ffb347; margin-bottom:0.5rem;">${escapeHtml(item.title)}</h3>
+                <p style="color:#eee; line-height:1.6;">${escapeHtml(item.content)}</p>
+                <div style="margin-top:1rem; text-align:right;">
+                    <small style="color:#888;">${item.time}</small>
+                    <i class="fas fa-trash delete-msg" data-index="${index}" style="margin-left:12px; cursor:pointer; color:#ff4d6d;"></i>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+        document.querySelectorAll('#favoriteList .delete-msg').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.getAttribute('data-index'));
+                const list = loadFavoriteMoments();
+                list.splice(idx, 1);
+                saveFavoriteMoments(list);
+                renderFavoriteMoments();
+            });
+        });
+    }
+    const favoriteForm = document.getElementById('favoriteForm');
+    if (favoriteForm) {
+        favoriteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('favoriteTitle').value.trim();
+            const content = document.getElementById('favoriteContent').value.trim();
+            if (!title || !content) return;
+            const now = new Date().toLocaleString();
+            const list = loadFavoriteMoments();
+            list.unshift({ title, content, time: now });
+            saveFavoriteMoments(list);
+            renderFavoriteMoments();
+            favoriteForm.reset();
+        });
+    }
+    renderFavoriteMoments();
+
+    console.log('✨ 页面已加载，已替换为「我最爱的瞬间」本地储存 ✨');
 </script>
 </body>
 </html>
